@@ -10,4 +10,23 @@ class Cita extends CI_Model {
   function __construct(){
     parent :: __construct();
   }
+
+  function getDates() {
+    $this->load->database();
+    return $this->db->get('Cita');
+  }
+
+  function getDatebyId($id) {
+    $this->load->database();
+    $query = $this->db->get_where('Cita',array('id_date' => $id));
+  }
+
+  function registerDate($data) {
+    $this->load->database();
+    return $this->db->insert('Cita', $data);
+  }
+
+  function getDatesByDay($day) {
+
+  }
 }
