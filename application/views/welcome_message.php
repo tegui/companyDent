@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,19 +49,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="#">Nosotros</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Servicios</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">Citas</a>
                     </li>
 					<li>
-                        <a href="#">Sign in</a>
-                    </li>
-					<li>
-                        <a href="#">Sign up</a>
+                        <a href="#">Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -65,7 +66,7 @@
         </div>
         <!-- /.container -->
     </nav>
-	
+
     <!-- Full Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
@@ -74,11 +75,11 @@
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
-		
-				
+
+
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
-			
+
             <div class="item active">
                     <img class="img-responsive" src="images/Imagen1.jpg" alt="">
 			</div>
@@ -99,6 +100,12 @@
         </a>
 
     </header>
+
+    <div class="">
+      Nuevo contenido <br>
+      Editar el CSS
+
+    </div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
