@@ -7,15 +7,19 @@ class Dentist extends CI_Model {
   public $specialty = '';
   public $time = '';
 
-  function __construct(){
+   function __construct(){
     parent :: __construct();
   }
 
-  function getDentist() {
+  public function getDentist() {
 
   }
 
-  function registerDentist() {
+  public function registerDentist() {
 
+  }
+
+  public function getDentistTime() {
+    
   }
 }
