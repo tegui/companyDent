@@ -3,33 +3,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class registerDateController extends CI_Controller {
 
+
 	public function index()
 	{
     $this->load->model('Odontologo');
     $this->load->model('Cita');
-    // Obtener especialidades aquí y enviarlas
-    $result = $this->Odontologo->getEspecialidades();
+    $data['especialidades'] = $this->espec();
 
-    $results = array();
-    $cont = 0;
-    foreach ($result as $especialidad) {
-      $results[$cont] = $especialidad->especialidad;
-      $cont++;
-    }
-    $data['especialidades'] = $results;
     $this->load->view('welcome_message');
 		$this->load->view('registerDateView', $data);
 	}
 
   public function disponibilidad() {
     $esp = $this->input->post('especialidad');
-    
+    $especialidad = $this->espec();
+    $esp_name = $especialidad[$esp];
+    $this->load->model('Odontologo');
+    $data_esp = $this->Odontologo->getWithSpecificSpecialty($esp_name);
+    $data['disponibles'] = $data_esp; //array();
+    // foreach ($data_esp as $odontologo) {
+    //   $name = $odontologo->nombre;
+    //   $id = $odontologo->id;
+    //   $data['disponibles'][] = array(
+    //     'nombre' => $name,
+    //     'id' => $id
+    //   );
+    // }
 
 
-
-    $data['disponibles'] = "sdasdas";
     $this->load->vars($data);
     $this->index();
+  }
+
+  public function espec() {
+    $this->load->model('Odontologo');
+    $result = $this->Odontologo->getEspecialidades();
+    $results = array();
+    $cont = 0;
+    foreach ($result as $especialidad) {
+      $results[$cont] = $especialidad->especialidad;
+      $cont++;
+    }
+    return $results;
   }
 
 	public function registrar(){

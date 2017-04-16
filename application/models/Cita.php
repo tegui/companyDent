@@ -9,29 +9,26 @@ class Cita extends CI_Model {
 
   function __construct(){
     parent :: __construct();
+    $this->load->database();
   }
 
   function getDates() {
-    $this->load->database();
     return $this->db->get('cita');
   }
 
   function getDatebyId($id) {
-    $this->load->database();
     $query = $this->db->get_where('cita',array('id_date' => $id));
   }
 
   function registerDate($data) {
-    $this->load->database();
     return $this->db->insert('cita', $data);
   }
 
   function getDatesByDay($day) {
 
   }
-  
+
   function get_Citas() {
-    $this->load->database();
     //SELECT nombre,fecha, hora from odontologo d JOIN cita c on d.id = c.id_odontologo
     $this->db->select('nombre, fecha, hora');
     $this->db->from('odontologo');

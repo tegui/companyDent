@@ -33,7 +33,11 @@ class Odontologo extends CI_Model {
     return $query->result();
   }
 
-  public function getWithSpecificSpecialty($id) {
-    
+  public function getWithSpecificSpecialty($esp) {
+    $this->db->select();
+    $this->db->from('odontologo');
+    $this->db->where('especialidad',$esp);
+    $query = $this->db->get();
+    return $query->result();
   }
 }

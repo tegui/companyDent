@@ -28,7 +28,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php if (isset($disponibles)) { ?>
   Resultados ------
+  <div class="available">
+    <?= form_open('registerDateController/pedirCita'); ?>
 
+      <?php
+      $selected = 0;
+      foreach ($disponibles as $cita):
+      ?>
+
+      <table>
+        <tr>
+            <th>Odontologo</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+        </tr>
+      </table>
+      <td>
+        <?=  form_radio(array('name' => 'disp', 'value' => $cita->id, 'checked' => ($cita->id == $selected) ? TRUE : FALSE, 'id' => $cita->id)) .  form_label($cita->nombre, $cita->id); ?>
+      </td>
+      <?php
+
+    endforeach; ?>
+    <br>
+    <?= form_submit('', 'Solicitar Cita'); ?>
+    <? form_close(); ?>
+  </div>
 
 <?php } ?>
 
