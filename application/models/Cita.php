@@ -29,4 +29,10 @@ class Cita extends CI_Model {
   function getDatesByDay($day) {
 
   }
+   function get_Citas() {
+
+    $this->load->database();
+    $query = $this->db->get('citas');
+    return $query->result();
+  }
 }
