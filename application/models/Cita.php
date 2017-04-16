@@ -29,7 +29,7 @@ class Cita extends CI_Model {
   function getDatesByDay($day) {
 
   }
-
+  
   function get_Citas() {
     $this->load->database();
     //SELECT nombre,fecha, hora from odontologo d JOIN cita c on d.id = c.id_odontologo
