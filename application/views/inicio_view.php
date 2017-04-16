@@ -9,18 +9,17 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
 
-
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
 
             <div class="item active">
-                    <img class="img-responsive" src="images/Imagen1.jpg" alt="">
+                    <img class="img-responsive" src="http://localhost/companyDent/images/Imagen1.jpg" alt="">
 			</div>
             <div class="item">
-                    <img class="img-responsive" src="images/Imagen2.jpg" alt="">
+                    <img class="img-responsive" src="http://localhost/companyDent/images/Imagen2.jpg" alt="">
 			</div>
 			<div class="item">
-                    <img class="img-responsive" src="images/Imagen3.jpg" alt="">
+                    <img class="img-responsive" src="http://localhost/companyDent/images/Imagen3.jpg" alt="">
 			</div>
         </div>
 
@@ -42,10 +41,10 @@
     </div>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="http://localhost/companyDent/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="http://localhost/companyDent/js/bootstrap.min.js"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>
@@ -53,7 +52,7 @@
         interval: 5000 //changes the speed
     })
     </script>
-    
+
 
 </body>
 

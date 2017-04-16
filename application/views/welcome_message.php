@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,16 +13,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="author" content="">
 
     <title>Company Dent</title>
-    
-        
-     
-
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="http://localhost/companyDent/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/full-slider.css" rel="stylesheet">
-
+    <link href="http://localhost/companyDent/css/full-slider.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,7 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a href="#">Servicios</a>
                     </li>
                     <li>
-                        <a href="citas_controller">Citas</a>
+                        <a href="http://localhost/companyDent/index.php/citas_controller">Citas</a>
+                    </li>
+                    <li>
+                        <a href="http://localhost/companyDent/index.php/registerDateController">Asignar Citas</a>
                     </li>
 					<li>
                         <a href="#">Contacto</a>

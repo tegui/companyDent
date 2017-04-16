@@ -5,29 +5,31 @@ class registerDateController extends CI_Controller {
 
 	public function index()
 	{
-    $this->load->model('Dentist');
+    $this->load->model('Odontologo');
     $this->load->model('Cita');
     // Obtener especialidades aquí y enviarlas
-    $data['especialidades'] = array("los brakes mijo", "las muelas", "la limpieza");
+    $result = $this->Odontologo->getEspecialidades();
+
+    $results = array();
+    $cont = 0;
+    foreach ($result as $especialidad) {
+      $results[$cont] = $especialidad->especialidad;
+      $cont++;
+    }
+    $data['especialidades'] = $results;
+    $this->load->view('welcome_message');
 		$this->load->view('registerDateView', $data);
 	}
 
-  public function getEspecialidades() {
-    $this->load->model('Dentist');
-    $this->load->model('Cita');
-  }
-
   public function disponibilidad() {
-    $this->load->model('Dentist');
-
     $esp = $this->input->post('especialidad');
+    
 
-    $dispon = $this->Dentist->getDentistTime();
 
-    $data['disponibles'] = $dispon;
-    $data['especialidades'] = array("los brakes mijo", "las muelas", "la limpieza");
+
+    $data['disponibles'] = "sdasdas";
     $this->load->vars($data);
-		$this->load->view('registerDateView', $data);
+    $this->index();
   }
 
 	public function registrar(){
