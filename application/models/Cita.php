@@ -32,7 +32,13 @@ class Cita extends CI_Model {
    function get_Citas() {
 
     $this->load->database();
-    $query = $this->db->get('citas');
+
+    //SELECT nombre,fecha, hora from odontologo d JOIN cita c on d.id = c.id_odontologo 
+    $this->db->select('nombre, fecha, hora');
+    $this->db->from('odontologo');
+    $this->db->join('cita', 'odontologo.id=cita.id_odontologo');  
+    $query = $this->db->get();
     return $query->result();
+
   }
 }

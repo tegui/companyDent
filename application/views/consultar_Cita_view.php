@@ -32,7 +32,7 @@
         
         ?>
         <tr>
-            <td><?= $cita->odontologo ?></td>
+            <td><?= $cita->nombre ?></td>
             <td><?= $cita->fecha ?></td>
             <td><?= $cita->hora ?></td>
         </tr>

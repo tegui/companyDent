@@ -9,12 +9,12 @@ class Citas_controller extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model('Cita');
-		$data['cita'] = $this->Cita->get_Citas();
+		$this->load->model('cita');
+		$data['citas'] = $this->cita->get_Citas();
 		//print_r($data);
 		
 
-		if ($data['cita'] == null) {
+		if ($data['citas'] == null) {
 
 			$data['resul'] = "No se encontraron citas asignadas";
 
