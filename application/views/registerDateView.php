@@ -16,39 +16,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>Registrar Cita</title>
 </head>
 <body style="margin-top:100px; margin-left: 30px">
-<H1>Registrar Cita</H1>
-<div>
+<H1 style="text-align: center;">Registrar Cita</H1>
+<div style="margin: auto; width:50%; height:50%; border: 3px solid black; padding: 10px; border-radius: 25px;">
   <?= form_open('registerDateController/disponibilidad'); ?>
   <p>
-    <?= form_label('Especialidad odontológica :', 'especialidad'); ?>
+    <?= form_label('Por favor selecciona una especialidad odontológica :', 'especialidad'); ?>
     <?= form_dropdown('especialidad', $especialidades, 0,['id'=>'especialidad']); ?>
   </p>
   <?= form_submit('','Buscar'); ?>
   <?= form_close(); ?>
 
 <?php if (isset($disponibles)) { ?>
-  Resultados ------
+  <br>
   <div class="available">
     <?= form_open('registerDateController/pedirCita'); ?>
-
+    <table style="border-collapse: collapse;border: 1px solid black; padding: 5px;">
+      <tr style="border: 1px solid black; padding: 10px;">
+          <th style="border: 1px solid black; padding: 10px;">Odontologo</th>
+          <th style="border: 1px solid black; padding: 10px;">Dia</th>
+          <th style="border: 1px solid black; padding: 10px;">Hora</th>
+      </tr>
       <?php
       $selected = 0;
-      foreach ($disponibles as $cita):
-      ?>
 
-      <table>
+      foreach ($disponibles as $cita):
+        $ava = $availability[$cita->id];
+        $days = array();
+        while ($name = current($ava)) {
+          $days[] = key($ava);
+          next($ava);
+        }
+        $dispo = 'disponibilidad' . ($cita->id);
+        $di = 'dia' . ($cita->id);
+      ?>
         <tr>
-            <th>Odontologo</th>
-            <th>Fecha</th>
-            <th>Hora</th>
+          <td style="border: 1px solid black; padding: 10px;">
+            <?=  form_radio(array('name' => 'disp', 'value' => $cita->id, 'checked' => ($cita->id == $selected) ? TRUE : FALSE, 'id' => $cita->id)) .  form_label($cita->nombre, $cita->id); ?>
+          </td>
+          <td style="border: 1px solid black; padding: 10px;">
+            <?= form_dropdown($di, $days,0, ['id'=>$di]);?>
+          </td>
+          <td style="border: 1px solid black; padding: 10px;">
+            <?= form_dropdown($dispo, $ava,0, ['id'=>$dispo]);?>
+          </td>
         </tr>
-      </table>
-      <td>
-        <?=  form_radio(array('name' => 'disp', 'value' => $cita->id, 'checked' => ($cita->id == $selected) ? TRUE : FALSE, 'id' => $cita->id)) .  form_label($cita->nombre, $cita->id); ?>
-      </td>
+
       <?php
 
     endforeach; ?>
+    </table>
     <br>
     <?= form_submit('', 'Solicitar Cita'); ?>
     <? form_close(); ?>
@@ -63,11 +79,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <p><?php if(isset($result)) { echo $result;} ?></p>
   </div>
 
-</div>
-<div style="margin-top: 50px;">
-  <p>
-    <input type="button" onclick="location.href='http://localhost/Tarea_Marzo24/index.php/Menu/';" value="Volver al menú" />
-  </p>
 </div>
 
 </body>

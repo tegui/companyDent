@@ -8,7 +8,7 @@ class registerDateController extends CI_Controller {
 	{
     $this->load->model('Odontologo');
     $this->load->model('Cita');
-    $data['especialidades'] = $this->espec();
+    $data['especialidades'] = $this->espec("one");
 
     $this->load->view('welcome_message');
 		$this->load->view('registerDateView', $data);
@@ -16,26 +16,24 @@ class registerDateController extends CI_Controller {
 
   public function disponibilidad() {
     $esp = $this->input->post('especialidad');
-    $especialidad = $this->espec();
+    $especialidad = $this->espec("two");
     $esp_name = $especialidad[$esp];
     $this->load->model('Odontologo');
     $data_esp = $this->Odontologo->getWithSpecificSpecialty($esp_name);
     $data['disponibles'] = $data_esp; //array();
-    // foreach ($data_esp as $odontologo) {
-    //   $name = $odontologo->nombre;
-    //   $id = $odontologo->id;
-    //   $data['disponibles'][] = array(
-    //     'nombre' => $name,
-    //     'id' => $id
-    //   );
-    // }
-
-
+		$available = array();
+    foreach ($data_esp as $odontologo) {
+      $name = $odontologo->nombre;
+      $id = $odontologo->id;
+			$available[$id] = $this->Odontologo->getOdontologoTime($id);
+    }
+		$data['availability'] = $available;
     $this->load->vars($data);
     $this->index();
   }
 
-  public function espec() {
+
+  public function espec($call) {
     $this->load->model('Odontologo');
     $result = $this->Odontologo->getEspecialidades();
     $results = array();
@@ -44,10 +42,89 @@ class registerDateController extends CI_Controller {
       $results[$cont] = $especialidad->especialidad;
       $cont++;
     }
-    return $results;
+			return $results;
   }
 
-	public function registrar(){
+	public function pedirCita(){
     $this->load->model('Cita');
+		$id_odontologo = $this->input->post('disp');
+		$dispo = 'disponibilidad' . ($id_odontologo);
+		$di = 'dia' . ($id_odontologo);
+		$horario = $this->input->post($dispo);
+		$fecha = $this->input->post($di);
+		$id_paciente = 22222;
+
+
+		$this->load->model('Odontologo');
+		$available = $this->Odontologo->getOdontologoTime($id_odontologo);
+		$days = array();
+		$cont = 0;
+		$day = '';
+		while ($name = current($available)) {
+			$days[] = key($available);
+			next($available);
+		}
+		$chooseDay = '';
+		foreach ($days as $singleDay) {
+			if ($cont == $fecha) {
+				$chooseDay = $singleDay;
+				$day = $this->getNearestDay($singleDay);
+				break;
+			}
+			$cont += 1;
+		}
+		$cont = 0;
+		$time = '';
+		foreach ($available[$chooseDay] as $singleTime) {
+			if ($cont == $horario) {
+				$time = $singleTime;
+				break;
+			}
+			$cont += 1;
+		}
+
+		$data = array(
+			"fecha" => $day,
+			"hora" => $time,
+			"id_paciente" => $id_paciente,
+			"id_odontologo" => $id_odontologo
+		);
+		print_r($data);
+		$this->Cita->registerDate($data);
+		$this->index();
 	}
+
+	private function getNearestDay($day) {
+		$dayy = $this->getDay($day);
+		$str = 'next ' . $dayy;
+		$date = date('Y-m-d', strtotime($str, strtotime(date('Y-m-d'))));
+		return $date;
+	}
+
+	private function getDay($day) {
+    switch ($day) {
+      case 'Lunes':
+        return "Monday";
+        break;
+      case 'Martes':
+        return "Tuesday";
+        break;
+      case 'Miercoles':
+        return "Wednesday";
+        break;
+      case 'Jueves':
+        return "Thursday";
+        break;
+      case 'Viernes':
+        return "Friday";
+        break;
+      case 'Sabado':
+        return "Saturday";
+        break;
+      default:
+        return "error";
+        break;
+    }
+  }
+
 }

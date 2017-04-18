@@ -39,17 +39,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Company Dent</a>
+                <a class="navbar-brand" href="http://localhost/companyDent/">Company Dent</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Nosotros</a>
-                    </li>
-                    <li>
-                        <a href="#">Servicios</a>
-                    </li>
+                    
                     <li>
                         <a href="http://localhost/companyDent/index.php/citas_controller">Citas</a>
                     </li>
