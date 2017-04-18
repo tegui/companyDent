@@ -89,8 +89,10 @@ class registerDateController extends CI_Controller {
 			"id_paciente" => $id_paciente,
 			"id_odontologo" => $id_odontologo
 		);
-		print_r($data);
-		$this->Cita->registerDate($data);
+		if ($this->Cita->registerDate($data)) {
+			$data['result'] = "Su cita se ha almacenado exitosamente :D";
+			$this->load->vars($data);
+		}
 		$this->index();
 	}
 

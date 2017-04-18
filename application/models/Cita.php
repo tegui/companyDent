@@ -21,7 +21,8 @@ class Cita extends CI_Model {
   }
 
   function registerDate($data) {
-    return $this->db->insert('cita', $data);
+    $this->db->insert('cita', $data);
+    return ($this->db->affected_rows() != 1) ? false : true;
   }
 
   function getDatesByDay($day) {
