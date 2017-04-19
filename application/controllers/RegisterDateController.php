@@ -101,8 +101,19 @@ class registerDateController extends CI_Controller {
 			"id_odontologo" => $id_odontologo
 		);
 
-		$msg['result'] = "Su cita se ha almacenado exitosamente :D";
-		$this->Cita->registerDate($data);
+		$registrar = $this->Cita->registerDate($data);
+
+		//validamos que que la consulta de registrar cita sea exitosa, 
+
+		if (!$registrar) 
+		{
+			$msg['result'] = "Registro de cita no exitosa :( ";
+		} 
+		else 
+		{
+			$msg['result'] = "Su cita se ha almacenado exitosamente :D";
+		}
+		
 		$this->load->vars($msg);
 		$this->index();
 	}
