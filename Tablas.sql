@@ -28,13 +28,14 @@ CREATE TABLE IF NOT EXISTS `horario_odontologo` (
 
 
 CREATE TABLE IF NOT EXISTS `cita` (
- id INT(5) PRIMARY KEY AUTO_INCREMENT,
+
  `fecha` DATE NOT NULL,
  `hora` time NOT NULL,
  `id_paciente` INT(12) NOT NULL,
  `id_odontologo` INT(12) NOT NULL,
   FOREIGN KEY(`id_odontologo`) REFERENCES `odontologo`(id),
- FOREIGN KEY(`id_paciente`) REFERENCES `paciente`(id)
+ FOREIGN KEY(`id_paciente`) REFERENCES `paciente`(id),
+	PRIMARY KEY(fecha,hora,id_odontologo)
 ) ;
 
 
@@ -70,7 +71,7 @@ INSERT INTO `horario_odontologo` (`id`, `id_odontologo`, `id_dia`, `horario_in`,
 (7, 2, 5, '12:00:00', '19:00:00'),
 (8, 6, 6, '06:00:00', '12:00:00');
 
-INSERT INTO `cita` (`id`, `fecha`, `hora`, `id_paciente`, `id_odontologo`) VALUES
-(1, '2017-04-16', '07:00:00', 11111, 3),
-(2, '2017-04-16', '08:00:00', 11111, 6),
-(3, '2017-04-17', '07:00:00', 11111, 2);
+INSERT INTO `cita` (`fecha`, `hora`, `id_paciente`, `id_odontologo`) VALUES
+('2017-04-16', '07:00:00', 11111, 3),
+('2017-04-16', '08:00:00', 11111, 6),
+('2017-04-17', '07:00:00', 11111, 2);
