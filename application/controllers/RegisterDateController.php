@@ -46,22 +46,25 @@ class registerDateController extends CI_Controller {
   }
 
 	public function pedirCita(){
-    $this->load->model('Cita');
 
-		$this->load->helper(array('form', 'url'));
+	$this->load->model('Cita');
+	$this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
+	$this->form_validation->set_rules('disp','disp', 'required');
 
+    if ($this->form_validation->run() == FALSE) {
+        $msg['result'] = "No ha seleccionado ninguna cita";
+		$this->load->vars($msg);
+		$this->index();
+    }else{
 		$id_odontologo = $this->input->post('disp');
-		$this->form_validation->set_rules('disp',
-    'disp', 'required');
+
 
 		$dispo = 'disponibilidad' . ($id_odontologo);
 		$di = 'dia' . ($id_odontologo);
 		$horario = $this->input->post($dispo);
 		$fecha = $this->input->post($di);
 		$id_paciente = 22222;
-
-
 
 		$this->load->model('Odontologo');
 		$available = $this->Odontologo->getOdontologoTime($id_odontologo);
@@ -97,14 +100,12 @@ class registerDateController extends CI_Controller {
 			"id_paciente" => $id_paciente,
 			"id_odontologo" => $id_odontologo
 		);
-		$msg['result'] = "Su cita se ha almacenado exitosamente :D";
-		if ($this->form_validation->run() == FALSE) {
-      $msg['result'] = "Ha ocurrido un error, por favor vuelva verifique y vuelva a intentarlo";
-    }
-		$this->Cita->registerDate($data);
 
+		$msg['result'] = "Su cita se ha almacenado exitosamente :D";
+		$this->Cita->registerDate($data);
 		$this->load->vars($msg);
 		$this->index();
+	}
 	}
 
 	private function getNearestDay($day) {
