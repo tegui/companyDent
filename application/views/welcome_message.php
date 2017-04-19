@@ -1,3 +1,6 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +13,10 @@
     <meta name="author" content="">
 
     <title>Company Dent</title>
-
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="http://localhost/companyDent/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/full-slider.css" rel="stylesheet">
-
+    <link href="http://localhost/companyDent/css/full-slider.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,25 +39,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Company Dent</a>
+                <a class="navbar-brand" href="http://localhost/companyDent/">Company Dent</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    
                     <li>
-                        <a href="#">About</a>
+                        <a href="http://localhost/companyDent/index.php/citas_controller">Citas</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                        <a href="http://localhost/companyDent/index.php/registerDateController">Asignar Citas</a>
                     </li>
 					<li>
-                        <a href="#">Sign in</a>
-                    </li>
-					<li>
-                        <a href="#">Sign up</a>
+                        <a href="#">Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -65,54 +60,3 @@
         </div>
         <!-- /.container -->
     </nav>
-	
-    <!-- Full Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-		
-				
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner">
-			
-            <div class="item active">
-                    <img class="img-responsive" src="images/Imagen1.jpg" alt="">
-			</div>
-            <div class="item">
-                    <img class="img-responsive" src="images/Imagen2.jpg" alt="">
-			</div>
-			<div class="item">
-                    <img class="img-responsive" src="images/Imagen3.jpg" alt="">
-			</div>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
-
-    </header>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-
-</body>
-
-</html>
