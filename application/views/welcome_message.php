@@ -38,28 +38,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/companyDent/">Company Dent</a>
+                <a class="navbar-brand" href="<?= base_url() ?>">Company Dent</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    
-                    <li>
-                        <a href="<?= base_url('appointment')?>">Consultar citas</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('registerDateController')?>">Pedir cita</a>
-                    </li>
+
                     <li class='dropdown'>
                       <a class='dropdown-toggle' data-toggle='dropdown' style="background: none;">Iniciar sesion <strong class='caret'></strong></a>
                       <div class='dropdown-menu' style='padding: 10px; padding-bottom: 0px; background: none; width: 400px;'>
-                        <form action='<?= base_url('login') ?>' method='post' accept-charset='UTF-8' role="form">
+                        <form action="<?= base_url('login/Sign_in') ?>" method='post' accept-charset='UTF-8' role="form">
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='text' name='user' placeholder='usuario'/>
                           </div>
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='password' name='password' placeholder='contraseña' />
                           </div>
-                          <div>Perfil de Usuario: <?= form_dropdown('typeUser',['Paciente','Odontologo' ,'Administrador'],0,['id'=>'typeUser']); ?></div>
+                          <div>Tipo de Usuario: <?= form_dropdown('typeUser',['Paciente','Odontologo' ,'Administrador'],0,['id'=>'typeUser']); ?></div>
 
 
                           <div class='form-group'>
