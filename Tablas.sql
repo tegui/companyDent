@@ -39,6 +39,16 @@ CREATE TABLE IF NOT EXISTS `cita` (
 ) ;
 
 
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `admin` (`id`, `name`, `password`) VALUES
+(1, 'admin', '1234');
+
 
 INSERT INTO `paciente` (`id`, `nombre`, `apellido`) VALUES
 (11111, 'andres', 'Rios'),
@@ -49,7 +59,7 @@ INSERT INTO `odontologo` (`id`, `nombre`, `apellido`, `especialidad`) VALUES
 (NULL, 'juan', 'Rojas', 'higiene'),
 (NULL, 'pedro', 'sanches', 'odontologia'),
 (NULL, 'ana', 'lara', 'odontologia'),
-(NULL, 'james', 'diaz', 'ortopedista'),
+(NULL, 'james', 'diaz', 'ortodoncia'),
 (NULL, 'julian', 'diaz', 'higiene'),
 (NULL, 'david', 'ossa', 'higiene');
 
