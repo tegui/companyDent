@@ -31,8 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+           <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -45,21 +44,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <ul class="nav navbar-nav">
                     
                     <li>
-                        <a href="http://localhost/companyDent/index.php/appointment">Consultar citas</a>
+                        <a href="<?= base_url('appointment')?>">Consultar citas</a>
                     </li>
                     <li>
-                        <a href="http://localhost/companyDent/index.php/registerDateController">Pedir cita</a>
+                        <a href="<?= base_url('registerDateController')?>">Pedir cita</a>
                     </li>
                     <li class='dropdown'>
-                      <a class='dropdown-toggle' href='#' data-toggle='dropdown' style="background: none;">Iniciar sesion <strong class='caret'></strong></a>
+                      <a class='dropdown-toggle' data-toggle='dropdown' style="background: none;">Iniciar sesion <strong class='caret'></strong></a>
                       <div class='dropdown-menu' style='padding: 10px; padding-bottom: 0px; background: none; width: 400px;'>
-                        <form action='' method='post' accept-charset='UTF-8' role="form">
+                        <form action='<?= base_url('login') ?>' method='post' accept-charset='UTF-8' role="form">
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='text' name='user' placeholder='usuario'/>
                           </div>
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='password' name='password' placeholder='contraseña' />
                           </div>
+                          <div>Perfil de Usuario: <?= form_dropdown('typeUser',['Paciente','Odontologo' ,'Administrador'],0,['id'=>'typeUser']); ?></div>
+
+
                           <div class='form-group'>
                             <button class='btn btn-primary' style='width: 380px;' type='submit'>INGRESAR</button>
                           </div>

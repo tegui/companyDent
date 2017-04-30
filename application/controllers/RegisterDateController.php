@@ -7,7 +7,7 @@ class registerDateController extends CI_Controller {
 	public function index()
 	{
     $this->load->model('Odontologo');
-    $this->load->model('Cita');
+    $this->load->model('appointment_model');
     $data['especialidades'] = $this->espec("one");
 
     $this->load->view('welcome_message');
@@ -47,7 +47,7 @@ class registerDateController extends CI_Controller {
 
 	public function pedirCita(){
       
-	$this->load->model('Cita');
+	$this->load->model('appointment_model');
 	$this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
 	$this->form_validation->set_rules('disp','disp', 'required');
