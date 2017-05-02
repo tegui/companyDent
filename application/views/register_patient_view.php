@@ -13,26 +13,27 @@
 			        	<div class="col-lg-4"></div>
 			            <div class="col-lg-4 text-center">
 			            	<h2>Registro de paciente</h2>
+
 			            	
-							<form id="form-create-patient" style="padding:0px 15px;"class="form-horizontal" role="form" action="<?php base_url();?>User_management/save" method="POST">
+							<form  style="padding:0px 15px; "class="form-horizontal" role="form" action="<?= base_url('user_management/save')?>" method="POST">
 		            			<div class="form-group">
 		            				<input type="text" name="id" class="form-control" placeholder="Identificacion"/>
 		            			</div>
 		            			<div class="form-group">
 		            				<input type="text" name="name" class="form-control" placeholder="Nombre  "/>
 		            			</div>
-		            			<div class="form-group">
-		            				<input type="text" name="phone" class="form-control" placeholder="Telefono"/>
-		            			</div>
+		            			<div class="form-group">Fecha de nacimiento
+		            				<input type="text" name="date" class= "tcal" value=""/>
+		            			</div>		            			
 		            		    <div class="form-group">
 		            				<input type="email" name="email" class="form-control" placeholder="Email"/>
 		            			</div>
 		            			<div class="form-group">
+		            				<input type="text" name="phone" class="form-control" placeholder="Telefono"/>
+		            			</div>
+		            			<div class="form-group">
 		            				<input type="password" name="password" class="form-control" placeholder="Contraseña"/>
-		            			</div>
-		            			<div >Fecha de nacimiento
-		            				<input type="date" name="date" class= "tcal" value=""/>
-		            			</div>
+		            			</div>		            			
 		            			<div class="form-group">
 				            		<button type="submit" class="btn btn-primary btn-block" value="Registrar">Registrar</button>
 			      				</div>
@@ -53,47 +54,6 @@
 			            	</div>
 			            </div>
 			            <hr>
-			            <div class="row">
-			            	<div id="listaEmpleados" class="col-lg-8">
-			            		
-			            	</div>
-			            	<div class="col-lg-4">
-			            		<div class="panel panel-default">
- 									<div class="panel-heading">Editar Empleado</div>
-								  	<div class="panel-body">
-								  		<form id="form-actualizar" class="form-horizontal" action="<?php echo base_url();?>empleados/actualizar" method="post" role="form" style="padding:0 10px;">
-								  			<div class="form-group">
-								  				<label>Nombres:</label>
-								  				<input type="hidden" id="idsele" name="idsele" value="">
-								  				<input type="text" name="nombressele" id="nombressele" class="form-control">
-								  			</div>
-								  			<div class="form-group">
-								  				<label>Apellidos:</label>
-								  				<input type="text" name="apellidossele" id="apellidossele" class="form-control">
-								  			</div>
-								  			<div class="form-group">
-								  				<label>DNI:</label>
-								  				<input type="text" name="dnisele" id="dnisele" class="form-control">
-								  			</div>
-								  			<div class="form-group">
-								  				<label>Telefono:</label>
-								  				<input type="text" name="telefonosele" id="telefonosele" class="form-control">
-								  			</div>
-								  			<div class="form-group">
-								  				<label>Email:</label>
-								  				<input type="email" name="emailsele" id="emailsele" class="form-control">
-								  			</div>
-								  			<div class="form-group">
-								  				<button type="button" id="btnactualizar" class="btn btn-success btn-block">Guardar</button>
-
-								  			</div>
-								  		</form>
-								    
-								  	</div>
-								</div>
-			            		
-			            	</div>
-
 			            </div>
 
 			        </div>

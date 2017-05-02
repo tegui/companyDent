@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 		
 		$this->load->model('dentist_model');
 		$this->load->model('admin_model');
-		//$this->load->model('user_model');
+		$this->load->model('patient_model');
 	}
 
 	function Sign_in() {
@@ -21,7 +21,7 @@ class Login extends CI_Controller {
 			if ($type_user == 0) {
 			# code...
 				$type = "user";
-				$resp = $this->user_model->login($user, $password);
+				$resp = $this->patient_model->login($user, $password);
 
 			}
 			else if ($type_user == 1) {
@@ -48,6 +48,7 @@ class Login extends CI_Controller {
 				];
 
 				$this->session->set_userdata($data);
+				
 			
 				$this->load->view('admin_menu_view');
 		        $this->load->view('inicio_view');

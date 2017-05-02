@@ -38,6 +38,23 @@ CREATE TABLE IF NOT EXISTS `cita` (
  PRIMARY KEY(fecha,hora,id_odontologo)
 ) ;
 
+CREATE TABLE `patient` (
+  `id` varchar(25) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `brithdate` date NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `phone` varchar(25) NOT NULL,
+  `password` varchar(25) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `patient`
+--
+
+INSERT INTO `patient` (`id`, `name`, `brithdate`, `email`, `phone`, `password`) VALUES
+('02', 'juana', '1990-10-19', 'juana@gmail.com', '88888888', '123'),
+('03', 'pedro daza', '1990-05-14', 'pedro@gmail.com', '12345', '123');
+
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
@@ -85,3 +102,10 @@ INSERT INTO `cita` (`fecha`, `hora`, `id_paciente`, `id_odontologo`) VALUES
 ('2017-04-16', '07:00:00', 11111, 3),
 ('2017-04-16', '08:00:00', 11111, 6),
 ('2017-04-17', '07:00:00', 11111, 2);
+
+ALTER TABLE `patient`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
