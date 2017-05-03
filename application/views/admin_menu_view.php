@@ -51,10 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Odontologo <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a >Consultar odontologo</a></li>
+                <li><a href="<?= base_url('User_management/list_dentist')?>">Consultar odontologo</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Odontologo nuevo</li>
-                <li><a href="#">Registrar odontologo</a></li>
+                <li><a href="<?= base_url('User_management/register_dentist')?>">Registrar odontologo</a></li>
                
 
               </ul>

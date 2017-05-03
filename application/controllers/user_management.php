@@ -13,6 +13,7 @@ class User_management extends CI_Controller {
 	  	}
 	
 		$this->load->model('Patient_model');
+		$this->load->model('Dentist_model');
 	}
 
 	public function register_patient()
@@ -109,6 +110,101 @@ class User_management extends CI_Controller {
 		}
 
          redirect(base_url('user_management/list_patients'));
+		
+	}
+
+
+	public function register_dentist()
+	{
+		
+		$this->load->view('admin_menu_view');
+		$this->load->view('register_dentist_view');
+	}
+
+
+
+	function save_dentist(){
+
+
+		$id = $this->input->post("id");
+		$name = $this->input->post("name");
+		$lastname = $this->input->post("lastname");
+		$specialty = $this->input->post("specialty");	
+		$password = $this->input->post("password");
+
+
+		$data = array(
+			"id" => $id,
+			"name" => $name,
+			"lastname" => $lastname,
+			"specialty" => $specialty,			
+			"password" => $password
+			);
+
+
+		if($this->Dentist_model->save($data) == true)
+			echo "Registro Guardado";
+		else
+			echo "No se pudo guardar los datos";
+		
+
+
+	}
+
+	function list_dentist(){
+
+		$data['dentists'] = $this->Dentist_model->list_dentist();
+		
+
+		if ($data['dentists'] == null) {
+
+			$data['resul'] = "No se encontraron odontologos registrados";
+
+		}
+		$this->load->view('admin_menu_view');
+		$this->load->view('consult_dentist_view', $data);
+		
+
+	}
+	function update_dent($id){
+		$data['dentists'] = $this->Dentist_model->dentist($id);
+		$this->load->view('admin_menu_view');
+		$this->load->view('update_dentist_view', $data);
+		
+
+
+	}
+
+	function update_dentist($id){
+
+		$name = $this->input->post("name");
+		$lastname = $this->input->post("lastname");
+		$specialty = $this->input->post("specialty");
+				
+		
+		$data = array(
+			"id" => $id,
+			"name" => $name,
+			"lastname" => $lastname,
+			"specialty" => $specialty,		
+			);
+
+	    $this->Dentist_model->update($data,$id);
+		redirect(base_url('user_management/list_dentist'));
+		
+	}
+
+
+	function delete_dentist($id){
+
+		if($this->Dentist_model->delete($id)){
+			$data['resul'] = "Registro Eliminado";
+		}
+		else{
+			$data['resul'] = "No se pudo eliminar los datos";
+		}
+
+         redirect(base_url('user_management/list__dentist'));
 		
 	}
 

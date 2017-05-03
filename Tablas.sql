@@ -4,11 +4,12 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `apellido` varchar(30) NOT NULL
 ) ;
 
-CREATE TABLE IF NOT EXISTS `odontologo` (
+CREATE TABLE IF NOT EXISTS `dentist` (
   id INT(12) PRIMARY KEY AUTO_INCREMENT,
-  `nombre` varchar(30) NOT NULL,
-  `apellido` varchar(30) NOT NULL,
-  `especialidad` varchar(30) NOT NULL
+  `name` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
+  `specialty` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL
 ) ;
 
 CREATE TABLE IF NOT EXISTS `dias` (

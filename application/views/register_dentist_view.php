@@ -12,25 +12,21 @@
 			        <div class="tab-pane  active" id="tab1">
 			        	<div class="col-lg-4"></div>
 			            <div class="col-lg-4 text-center">
-			            	<h2>Registro de paciente</h2>
+			            	<h2>Registro de odontologo</h2>
 
 			            	
-							<form  style="padding:0px 15px; "class="form-horizontal" role="form" action="<?= base_url('user_management/save')?>" method="POST">
-		            			<div class="form-group">
-		            				<input type="text" name="id" class="form-control" placeholder="Identificacion"/>
-		            			</div>
+							<form  style="padding:0px 15px; "class="form-horizontal" role="form" action="<?= base_url('user_management/save_dentist')?>" method="POST">
+		            		
 		            			<div class="form-group">
 		            				<input type="text" name="name" class="form-control" placeholder="Nombre  "/>
 		            			</div>
-		            			<div class="form-group">Fecha de nacimiento
-		            				<input type="text" name="date" class= "tcal" value=""/>
-		            			</div>		            			
-		            		    <div class="form-group">
-		            				<input type="email" name="email" class="form-control" placeholder="Email"/>
-		            			</div>
 		            			<div class="form-group">
-		            				<input type="text" name="phone" class="form-control" placeholder="Telefono"/>
+		            				<input type="text" name="lastname" class="form-control" placeholder="Apellido  "/>
+		            			</div>	            			
+		            		    <div class="form-group">
+		            				<input type="text" name="specialty" class="form-control" placeholder="Especialidad"/>
 		            			</div>
+		            			
 		            			<div class="form-group">
 		            				<input type="password" name="password" class="form-control" placeholder="Contraseña"/>
 		            			</div>		            			
@@ -40,6 +36,8 @@
 		            		</form>
 		            	</div>
 			        </div>
+
+			       
 
 			        </div>
 
