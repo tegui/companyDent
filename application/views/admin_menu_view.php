@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="http://localhost/companyDent/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="http://localhost/companyDent/css/full-slider.css" rel="stylesheet">
- 
+
 </head>
 
 <body>
@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                  
+
                     <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paciente <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Paciente nuevo</li>
                 <li><a href="<?= base_url('User_management/register_patient')?>">Registrar paciente</a></li>
-               
+
 
               </ul>
             </li>
@@ -55,13 +55,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Odontologo nuevo</li>
                 <li><a href="<?= base_url('User_management/register_dentist')?>">Registrar odontologo</a></li>
-               
+
 
               </ul>
             </li>
              <li>
                         <a href="<?= base_url('login/get_out') ?>"> Cerrar Sesion</a>
-                    </li> 
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

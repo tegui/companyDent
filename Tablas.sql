@@ -1,87 +1,99 @@
-CREATE TABLE IF NOT EXISTS `paciente` (
+CREATE TABLE IF NOT EXISTS `user` (
   id INT(12) PRIMARY KEY AUTO_INCREMENT,
-  `nombre` varchar(30) NOT NULL,
-  `apellido` varchar(30) NOT NULL
+  `name` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `user_type` INT(1) NOT NULL
+);
+-- 0 for admin, 1 for dentist, 2 for patient
+
+CREATE TABLE IF NOT EXISTS `patient` (
+  id INT(12) PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT(12) NOT NULL,
+  `birthdate` date NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `phone` varchar(25) NOT NULL,
+  FOREIGN KEY(`user_id`) REFERENCES `user`(id)
 ) ;
 
 CREATE TABLE IF NOT EXISTS `dentist` (
   id INT(12) PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `lastname` varchar(30) NOT NULL,
+  `user_id` INT(12) NOT NULL,
   `specialty` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL
+  FOREIGN KEY(`user_id`) REFERENCES `user`(id)
 ) ;
 
-CREATE TABLE IF NOT EXISTS `dias` (
+CREATE TABLE IF NOT EXISTS `days` (
  id INT(1) PRIMARY KEY,
- `nombre` varchar(15) NOT NULL
+ `name` varchar(15) NOT NULL
 ) ;
 
-CREATE TABLE IF NOT EXISTS `horario_odontologo` (
+CREATE TABLE IF NOT EXISTS `dentist_time` (
  id INT(3) PRIMARY KEY AUTO_INCREMENT,
-  `id_odontologo` INT(12) NOT NULL,
-  `id_dia` INT(1) NOT NULL,
-  `horario_in` TIME NOT NULL,
-  `horario_out` TIME NOT NULL,
-   FOREIGN KEY(`id_odontologo`) REFERENCES `odontologo`(id),
-   FOREIGN KEY(`id_dia`) REFERENCES `dias`(id)
+  `id_dentist` INT(12) NOT NULL,
+  `id_day` INT(1) NOT NULL,
+  `time_in` TIME NOT NULL,
+  `time_out` TIME NOT NULL,
+   FOREIGN KEY(`id_dentist`) REFERENCES `dentist`(id),
+   FOREIGN KEY(`id_day`) REFERENCES `days`(id)
 ) ;
 
 
-CREATE TABLE IF NOT EXISTS `cita` (
- 
- `fecha` DATE NOT NULL,
- `hora` time NOT NULL,
- `id_paciente` INT(12) NOT NULL,
- `id_odontologo` INT(12) NOT NULL,
-  FOREIGN KEY(`id_odontologo`) REFERENCES `odontologo`(id),
- FOREIGN KEY(`id_paciente`) REFERENCES `paciente`(id),
- PRIMARY KEY(fecha,hora,id_odontologo)
-) ;
-
-CREATE TABLE `patient` (
-  `id` varchar(25) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `brithdate` date NOT NULL,
-  `email` varchar(25) NOT NULL,
-  `phone` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `patient`
---
-
-INSERT INTO `patient` (`id`, `name`, `brithdate`, `email`, `phone`, `password`) VALUES
-('02', 'juana', '1990-10-19', 'juana@gmail.com', '88888888', '123'),
-('03', 'pedro daza', '1990-05-14', 'pedro@gmail.com', '12345', '123');
-
+CREATE TABLE IF NOT EXISTS `patient_date` (
+  id INT(4) PRIMARY KEY AUTO_INCREMENT,
+ `data_date` DATE NOT NULL,
+ `hour` time NOT NULL,
+ `id_patient` INT(12) NOT NULL,
+ `id_dentist` INT(12) NOT NULL,
+ FOREIGN KEY(`id_dentist`) REFERENCES `dentist`(id),
+ FOREIGN KEY(`id_patient`) REFERENCES `patient`(id),
+ UNIQUE(data_date,hour,id_patient,id_dentist)
+);
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int(12) NOT NULL,
+  FOREIGN KEY(`user_id`) REFERENCES `user`(id)
+) ;
 
 
-INSERT INTO `admin` (`id`, `name`, `password`) VALUES
-(1, 'admin', '1234');
+
+--
+-- Volcado de datos para la tabla
+--
+INSERT INTO `user` (`name`, `lastname`, `password`, `user_type`) VALUES
+('JULIAN', 'TEGUI', '123456', 0),
+('ESTEBAN', 'SUAREZ', '123456', 0),
+('JAMES', 'DIAZ', '123456', 0)
+('FELIPE', 'PINZON', '123456', 1)
+('ARTURO', 'JAVA', '123456', 1)
+('LUFFY', 'MIJA', '123456', 2)
+('EUSTAQUIO', 'DIAZ', '123456', 2)
+('JAMES', 'CALLE', '123456', 2)
+('CAROL', 'MUGIWARA', '123456', 2)
+('CRISTIAN', 'DIAZ', '123456', 2)
+('GLORIA', 'STEVENSON', '123456', 1);
+
+INSERT INTO `admin` (`user_id`) VALUES --THIS IS RIDICULOUS :P
+(1),
+(2),
+(3);
+
+insert INTO `patient` (`user_id`, `birthdate`, `email`, `phone`) VALUES
+  (6, '1990-10-19', 'luffy@mail.com', '300678903'),
+  (7, '1990-10-19', 'eustaquio@mail.com', '300678903'),
+  (8, '1990-10-19', 'jamesc@mail.com', '300678903'),
+  (9, '1990-10-19', 'carol@mail.com', '300678903'),
+  (10, '1990-10-19', 'cristian@mail.com', '300678903');
 
 
-INSERT INTO `paciente` (`id`, `nombre`, `apellido`) VALUES
-(11111, 'andres', 'Rios'),
-(22222, 'sandra', 'lara');
+INSERT INTO `dentist` (`user_id`, `specialty`) VALUES
+(4, 'endodoncia'),
+(5, 'ortodoncia'),
+(11, 'cirugia y traumatologia');
 
 
-INSERT INTO `odontologo` (`id`, `nombre`, `apellido`, `especialidad`) VALUES
-(NULL, 'juan', 'Rojas', 'higiene'),
-(NULL, 'pedro', 'sanches', 'odontologia'),
-(NULL, 'ana', 'lara', 'odontologia'),
-(NULL, 'james', 'diaz', 'ortodoncia'),
-(NULL, 'julian', 'diaz', 'higiene'),
-(NULL, 'david', 'ossa', 'higiene');
-
-INSERT INTO `dias` (`id`, `nombre`) VALUES
+INSERT INTO `days` (`id`, `name`) VALUES
 (1, 'Lunes'),
 (2, 'Martes'),
 (3, 'Miercoles'),
@@ -89,24 +101,14 @@ INSERT INTO `dias` (`id`, `nombre`) VALUES
 (5, 'Viernes'),
 (6, 'Sabado');
 
-INSERT INTO `horario_odontologo` (`id`, `id_odontologo`, `id_dia`, `horario_in`, `horario_out`) VALUES
-(1, 2, 2, '07:00:00', '16:00:00'),
-(2, 2, 3, '07:00:00', '13:00:00'),
-(3, 3, 3, '07:00:00', '14:00:00'),
-(4, 1, 4, '13:00:00', '20:00:00'),
-(5, 4, 5, '09:00:00', '17:00:00'),
-(6, 5, 4, '08:00:00', '18:00:00'),
-(7, 2, 5, '12:00:00', '19:00:00'),
-(8, 6, 6, '06:00:00', '12:00:00');
+INSERT INTO `dentist_time` (`id_dentist`, `id_day`, `time_in`, `time_out`) VALUES
+(1, 2, '07:00:00', '16:00:00'),
+(2, 3, '07:00:00', '13:00:00'),
+(3, 3, '07:00:00', '14:00:00'),
+(2, 4, '15:00:00', '20:00:00');
 
-INSERT INTO `cita` (`fecha`, `hora`, `id_paciente`, `id_odontologo`) VALUES
-('2017-04-16', '07:00:00', 11111, 3),
-('2017-04-16', '08:00:00', 11111, 6),
-('2017-04-17', '07:00:00', 11111, 2);
+INSERT INTO `patient_date` (`data_date`, `hour`,	`id_patient`,	`id_dentist`) VALUES
+('2017-04-16', '07:00:00', 4, 2),
+('2017-04-16', '07:00:00', 6, 3);
 
-ALTER TABLE `patient`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
