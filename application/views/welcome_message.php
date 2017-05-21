@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class='dropdown'>
                       <a class='dropdown-toggle' data-toggle='dropdown' style="background: none;">Iniciar sesion <strong class='caret'></strong></a>
                       <div class='dropdown-menu' style='padding: 10px; padding-bottom: 0px; background: none; width: 400px;'>
-                        <form action="<?= base_url('login/Sign_in') ?>" method='post' accept-charset='UTF-8' role="form">
+                        <form action="<?= base_url('login/signIn') ?>" method='post' accept-charset='UTF-8' role="form">
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='text' name='user' placeholder='usuario'/>
                           </div>

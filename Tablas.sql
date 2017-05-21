@@ -1,9 +1,11 @@
 CREATE TABLE IF NOT EXISTS `user` (
   id INT(12) PRIMARY KEY AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `user_type` INT(1) NOT NULL
+  `user_type` INT(1) NOT NULL,
+  UNIQUE(`username`)
 );
 -- 0 for admin, 1 for dentist, 2 for patient
 

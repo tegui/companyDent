@@ -12,7 +12,7 @@ class Login extends CI_Controller {
 		$this->load->model('patient_model');
 	}
 
-	function Sign_in() {
+	function signIn() {
 		$user = $this->input->post('user');
 		$password = $this->input->post('password');
 		$userObj = $this->User->getUser($user, $password);
@@ -20,40 +20,39 @@ class Login extends CI_Controller {
 			print_r("AUTH ERROR");
 			return;
 		}
-
+		$type = "";
+		$userMenu = "";
 		switch ($userObj->userType) {
 			case 0:
-				$data = [
-					"id" => $userObj->id,
-					"name" => $userObj->name,
-					"type" => "admin",
-					"login" => TRUE];
-				$this->session->set_userdata($data);
-				$this->load->view('admin_menu_view');
-				$this->load->view('inicio_view');
+				$type = "admin";
+				$userMenu = 'admin_menu_view';
 				break;
 			case 1:
 				$type = "dentist";
-				print_r("aqui");
+				$userMenu = 'dentist_menu_view';
 				break;
 			default:
 				$type = "user";
+				$userMenu = 'default_menu_view';
 				break;
 		}
-
+		$data = [
+			"id" => $userObj->id,
+			"name" => $userObj->name,
+			"type" => $type,
+			"login" => TRUE];
+		$this->session->set_userdata($data);
+		$this->load->view($userMenu);
+		$this->load->view('inicio_view');
 }
 
 
 
-
-
-		function get_out()
-		{
-			$this->session->sess_destroy();
-			$this->load->view('welcome_message');
-		    $this->load->view('inicio_view');
-
-		}
+function get_out() {
+		$this->session->sess_destroy();
+		$this->load->view('welcome_message');
+		$this->load->view('inicio_view');
+	}
 
 }
 
