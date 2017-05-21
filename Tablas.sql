@@ -38,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `dentist_time` (
    FOREIGN KEY(`id_day`) REFERENCES `days`(id)
 ) ;
 
-
 CREATE TABLE IF NOT EXISTS `patient_date` (
   id INT(4) PRIMARY KEY AUTO_INCREMENT,
  `data_date` DATE NOT NULL,
@@ -55,8 +54,6 @@ CREATE TABLE `admin` (
   `user_id` int(12) NOT NULL,
   FOREIGN KEY(`user_id`) REFERENCES `user`(id)
 ) ;
-
-
 
 --
 -- Volcado de datos para la tabla
@@ -86,12 +83,10 @@ insert INTO `patient` (`user_id`, `birthdate`, `email`, `phone`) VALUES
   (9, '1990-10-19', 'carol@mail.com', '300678903'),
   (10, '1990-10-19', 'cristian@mail.com', '300678903');
 
-
 INSERT INTO `dentist` (`user_id`, `specialty`) VALUES
 (4, 'endodoncia'),
 (5, 'ortodoncia'),
 (11, 'cirugia y traumatologia');
-
 
 INSERT INTO `days` (`id`, `name`) VALUES
 (1, 'Lunes'),
@@ -110,5 +105,3 @@ INSERT INTO `dentist_time` (`id_dentist`, `id_day`, `time_in`, `time_out`) VALUE
 INSERT INTO `patient_date` (`data_date`, `hour`,	`id_patient`,	`id_dentist`) VALUES
 ('2017-04-16', '07:00:00', 4, 2),
 ('2017-04-16', '07:00:00', 6, 3);
-
---

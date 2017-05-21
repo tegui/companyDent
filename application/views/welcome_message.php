@@ -53,9 +53,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='password' name='password' placeholder='contraseña' />
                           </div>
-                          <div>Tipo de Usuario: <?= form_dropdown('typeUser',['Paciente','Odontologo' ,'Administrador'],0,['id'=>'typeUser']); ?></div>
-
-
                           <div class='form-group'>
                             <button class='btn btn-primary' style='width: 380px;' type='submit'>INGRESAR</button>
                           </div>

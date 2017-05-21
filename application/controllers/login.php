@@ -5,7 +5,8 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		
+		$this->load->model('User');
+
 		$this->load->model('dentist_model');
 		$this->load->model('admin_model');
 		$this->load->model('patient_model');
@@ -14,53 +15,35 @@ class Login extends CI_Controller {
 	function Sign_in() {
 		$user = $this->input->post('user');
 		$password = $this->input->post('password');
-		$type_user = $this->input->post('typeUser');
+		$userObj = $this->User->getUser($user, $password);
+		if ($userObj->status == 0) {
+			print_r("AUTH ERROR");
+			return;
+		}
 
-	
-
-			if ($type_user == 0) {
-			# code...
-				$type = "user";
-				$resp = $this->patient_model->login($user, $password);
-
-			}
-			else if ($type_user == 1) {
-			# code...
-
-				$type = "dentist";
-				$resp = $this->dentist_model->login($user, $password);
-
-			}
-
-			else if ($type_user == 2) {
-			# code...
-				$type = "admin";
-				$resp = $this->admin_model->login($user, $password);
-
-			}
-
-			if($resp){
+		switch ($userObj->userType) {
+			case 0:
 				$data = [
-				"id" => $resp->id,
-				"name" => $resp->name,
-				"type" => $type,
-				"login" => TRUE
-				];
-
+					"id" => $userObj->id,
+					"name" => $userObj->name,
+					"type" => "admin",
+					"login" => TRUE];
 				$this->session->set_userdata($data);
-				
-			
 				$this->load->view('admin_menu_view');
-		        $this->load->view('inicio_view');
+				$this->load->view('inicio_view');
+				break;
+			case 1:
+				$type = "dentist";
+				print_r("aqui");
+				break;
+			default:
+				$type = "user";
+				break;
+		}
 
-			}
-			else{
+}
 
-				echo "Error";
-			}
-			}
 
-	
 
 
 
