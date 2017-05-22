@@ -12,6 +12,7 @@ class User_management extends CI_Controller {
 			$this->load->model('User');
 			$this->load->model('Patient');
 			$this->load->model('Dentist');
+			$this->load->model('Appointment');
 	}
 
 	function list_patients() {
@@ -70,9 +71,6 @@ class User_management extends CI_Controller {
 		$data['patients'] = $this->Patient->patient($id);
 		$this->load->view('admin_menu_view');
 		$this->load->view('update_patient_view', $data);
-
-
-
 	}
 
 	function update_patient($id){
@@ -104,9 +102,7 @@ class User_management extends CI_Controller {
 		else{
 			$data['resul'] = "No se pudo eliminar los datos";
 		}
-
          redirect(base_url('user_management/list_patients'));
-
 	}
 
 
@@ -179,46 +175,37 @@ class User_management extends CI_Controller {
 		$data['dentists'] = $this->Dentist_model->dentist($id);
 		$this->load->view('admin_menu_view');
 		$this->load->view('update_dentist_view', $data);
-
-
-
 	}
 
 	function update_dentist($id){
-
 		$name = $this->input->post("name");
 		$lastname = $this->input->post("lastname");
 		$specialty = $this->input->post("specialty");
-
-
 		$data = array(
 			"id" => $id,
 			"name" => $name,
 			"lastname" => $lastname,
 			"specialty" => $specialty,
 			);
-
 	    $this->Dentist_model->update($data,$id);
 		redirect(base_url('user_management/list_dentist'));
-
 	}
 
-
 	function delete_dentist($id){
-
 		if($this->Dentist_model->delete($id)){
 			$data['resul'] = "Registro Eliminado";
 		}
 		else{
 			$data['resul'] = "No se pudo eliminar los datos";
 		}
-
          redirect(base_url('user_management/list__dentist'));
-
 	}
 
-
-
+	function registerAppointment() {
+		$data['specialties'] = $this->Appointment->getSpecialties();
+		$this->load->view('default_menu_view');
+		$this->load->view('registerDateview', $data);
+	}
 }
 
 

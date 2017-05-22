@@ -25,7 +25,7 @@ class User extends CI_Model {
   function getUser($username, $pass) {
     $this->db->select();
     $this->db->from('user');
-    $this->db->where('name', $username);
+    $this->db->where('username', $username);
     $this->db->where('password', $pass);
     $data = $this->db->get()->result_array();
 

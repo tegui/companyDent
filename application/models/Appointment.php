@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class appointment_model extends CI_Model {
+class Appointment extends CI_Model {
   public $id_date = '';
   public $date = '';
   public $id_user = '';
-  public $id_doctor = '';
+  public $id_dentist = '';
 
   function __construct(){
     parent :: __construct();
@@ -35,5 +35,17 @@ class appointment_model extends CI_Model {
     $this->db->join('cita', 'odontologo.id=cita.id_odontologo');
     $query = $this->db->get();
     return $query->result();
+  }
+
+  function getSpecialties() {
+    $this->db->select('name');
+    $this->db->from('specialty');
+    $specialties = $this->db->get();
+    $items = array();
+    $count = 0;
+    foreach (($specialties->result_array()) as $name => $specialty) {
+      $items[$count++] = $specialty['name'];
+    }
+    return $items;
   }
 }

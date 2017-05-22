@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class appointment extends CI_Controller {
+class appointmentController extends CI_Controller {
 
 	function __construct(){
 		parent :: __construct();
@@ -9,19 +9,15 @@ class appointment extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model('appointment_model');
+		$this->load->model('Appointment');
 		$data['appointments'] = $this->appointment_model->get_appointments();
 		//print_r($data);
-		
-
 		if ($data['appointments'] == null) {
-
 			$data['resul'] = "No se encontraron citas asignadas";
-
 		}
 		$this->load->view('welcome_message');
 		$this->load->view('consult_appointment_view', $data);
-			
+
 	}
 
 }

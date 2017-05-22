@@ -57,6 +57,10 @@ CREATE TABLE `admin` (
   FOREIGN KEY(`user_id`) REFERENCES `user`(id)
 ) ;
 
+CREATE TABLE IF NOT EXISTS `specialty`(
+  `id` INT(3) PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL
+);
 --
 -- Volcado de datos para la tabla
 --
@@ -107,3 +111,8 @@ INSERT INTO `dentist_time` (`id_dentist`, `id_day`, `time_in`, `time_out`) VALUE
 INSERT INTO `patient_date` (`data_date`, `hour`,	`id_patient`,	`id_dentist`) VALUES
 ('2017-04-16', '07:00:00', 4, 2),
 ('2017-04-16', '07:00:00', 5, 3);
+
+INSERT INTO `specialty` (`name`) VALUES
+('Endodoncia'),
+('Ortodoncia'),
+('Cirugia y traumatología');

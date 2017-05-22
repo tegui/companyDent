@@ -3,29 +3,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class registerDateController extends CI_Controller {
 
-
 	public function index()
 	{
-    $this->load->model('Odontologo');
-    $this->load->model('appointment_model');
-    $data['especialidades'] = $this->espec("one");
+    $this->load->model('Dentist');
+    $this->load->model('Appointment');
+    $data['specialties'] = $this->espec("one");
 
     $this->load->view('welcome_message');
 		$this->load->view('registerDateView', $data);
 	}
 
-  public function disponibilidad() {
+  public function availability() {
     $esp = $this->input->post('especialidad');
-    $especialidad = $this->espec("two");
-    $esp_name = $especialidad[$esp];
-    $this->load->model('Odontologo');
-    $data_esp = $this->Odontologo->getWithSpecificSpecialty($esp_name);
+		$espp = $esp + 1;
+		$this->db->select('name');
+		$this->db->from('specialty');
+		$this->db->where('id',$espp);
+		$espOne = $this->db->get();
+		$especialtyName = $espOne->result_array();
+		$especialtyNameTwo = "";
+		foreach ($especialtyName as $key) {
+			$especialtyNameTwo = $key['name'];
+		}
+
+		$this->load->model('Dentist');
+    $data_esp = $this->Dentist->getWithSpecificSpecialty($especialtyNameTwo);
     $data['disponibles'] = $data_esp; //array();
+		print_r($data['disponibles']);
+		//Aqui voy 
+		return;
 		$available = array();
     foreach ($data_esp as $odontologo) {
       $name = $odontologo->nombre;
       $id = $odontologo->id;
-			$available[$id] = $this->Odontologo->getOdontologoTime($id);
+			$available[$id] = $this->Dentist->getOdontologoTime($id);
     }
 		$data['availability'] = $available;
     $this->load->vars($data);
@@ -34,10 +45,12 @@ class registerDateController extends CI_Controller {
 
 
   public function espec($call) {
-    $this->load->model('Odontologo');
-    $result = $this->Odontologo->getEspecialidades();
+    $this->load->model('Dentist');
+    $result = $this->Dentist->getEspecialidades();
     $results = array();
     $cont = 0;
+		print_r($result);
+		return;
     foreach ($result as $especialidad) {
       $results[$cont] = $especialidad->especialidad;
       $cont++;
@@ -50,12 +63,12 @@ class registerDateController extends CI_Controller {
 	$this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
 	$this->form_validation->set_rules('disp','disp', 'required');
-	  
-    if ($this->form_validation->run() == FALSE) {	
+
+    if ($this->form_validation->run() == FALSE) {
         $msg['result'] = "No ha seleccionado ninguna cita";
 		$this->load->vars($msg);
 		$this->index();
-    }else{   
+    }else{
 		$id_odontologo = $this->input->post('disp');
 
 		$dispo = 'disponibilidad' . ($id_odontologo);
@@ -64,8 +77,8 @@ class registerDateController extends CI_Controller {
 		$fecha = $this->input->post($di);
 		$id_paciente = 22222;
 
-		$this->load->model('Odontologo');
-		$available = $this->Odontologo->getOdontologoTime($id_odontologo);
+		$this->load->model('Dentist');
+		$available = $this->Dentist->getOdontologoTime($id_odontologo);
 		$days = array();
 		$cont = 0;
 		$day = '';
@@ -100,19 +113,19 @@ class registerDateController extends CI_Controller {
 		);
 		$registrar = $this->Cita->registerDate($data);
 
-		//validamos que que la consutal de registrar cita sea exitosa, 
+		//validamos que que la consutal de registrar cita sea exitosa,
 
-		
-		if (!$registrar ) 
+
+		if (!$registrar )
 		{
 			$msg['result'] = "Registro de cita no exitosa :( ";
-		} 
-		else 
+		}
+		else
 		{
 			$msg['result'] = "Su cita se ha almacenado exitosamente :D";
 		}
 
-		
+
 
 		$this->load->vars($msg);
 		$this->index();

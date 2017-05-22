@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class='dropdown-menu' style='padding: 10px; padding-bottom: 0px; background: none; width: 400px;'>
                         <form action="<?= base_url('login/signIn') ?>" method='post' accept-charset='UTF-8' role="form">
                           <div class='form-group'>
-                            <input class='form-control large' style='text-align: center;' type='text' name='user' placeholder='usuario'/>
+                            <input class='form-control large' style='text-align: center;' type='text' name='user' placeholder='Nombre de Usuario'/>
                           </div>
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='password' name='password' placeholder='contraseña' />

@@ -18,15 +18,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body style="margin-top:100px; margin-left: 30px">
 <H1 style="text-align: center;">Pedir Cita</H1>
 <div style="margin: auto; width:50%; height:50%; border: 3px solid black; padding: 10px; border-radius: 25px;">
-  <?= form_open('registerDateController/disponibilidad'); ?>
+  <?= form_open('registerDateController/availability'); ?>
   <p>
     <?= form_label('Por favor selecciona una especialidad odontológica :', 'especialidad'); ?>
-    <?= form_dropdown('especialidad', $especialidades, 0,['id'=>'especialidad']); ?>
+    <?= form_dropdown('especialidad', $specialties, 0,['id'=>'especialidad']); ?>
   </p>
   <?= form_submit('','Buscar'); ?>
   <?= form_close(); ?>
 
-<?php if (isset($disponibles)) { ?>
+<?php if (isset($available)) { ?>
   <br>
   <div class="available">
     <?= form_open('registerDateController/pedirCita'); ?>
