@@ -46,7 +46,6 @@ class registerDateController extends CI_Controller {
   }
 
 	public function pedirCita(){
-      
 	$this->load->model('appointment_model');
 	$this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
@@ -58,7 +57,6 @@ class registerDateController extends CI_Controller {
 		$this->index();
     }else{   
 		$id_odontologo = $this->input->post('disp');
-		
 
 		$dispo = 'disponibilidad' . ($id_odontologo);
 		$di = 'dia' . ($id_odontologo);
@@ -100,8 +98,6 @@ class registerDateController extends CI_Controller {
 			"id_paciente" => $id_paciente,
 			"id_odontologo" => $id_odontologo
 		);
-		
-		
 		$registrar = $this->Cita->registerDate($data);
 
 		//validamos que que la consutal de registrar cita sea exitosa, 

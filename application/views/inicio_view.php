@@ -35,8 +35,6 @@
 
     <div class="">
 
-    
-
     </div>
 
     <!-- jQuery -->
