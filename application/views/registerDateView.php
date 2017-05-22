@@ -13,10 +13,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<title>Registrar Cita</title>
+	<title>Pedir Cita</title>
 </head>
 <body style="margin-top:100px; margin-left: 30px">
-<H1 style="text-align: center;">Registrar Cita</H1>
+<H1 style="text-align: center;">Pedir Cita</H1>
 <div style="margin: auto; width:50%; height:50%; border: 3px solid black; padding: 10px; border-radius: 25px;">
   <?= form_open('registerDateController/disponibilidad'); ?>
   <p>
@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     endforeach; ?>
     </table>
     <br>
-    <?= form_submit('', 'Solicitar Cita'); ?>
+    <?= form_submit('', 'Pedir Cita'); ?>
     <? form_close(); ?>
   </div>
 

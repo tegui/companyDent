@@ -7,7 +7,7 @@ class registerDateController extends CI_Controller {
 	public function index()
 	{
     $this->load->model('Odontologo');
-    $this->load->model('Cita');
+    $this->load->model('appointment_model');
     $data['especialidades'] = $this->espec("one");
 
     $this->load->view('welcome_message');
@@ -46,19 +46,17 @@ class registerDateController extends CI_Controller {
   }
 
 	public function pedirCita(){
-
-	$this->load->model('Cita');
+	$this->load->model('appointment_model');
 	$this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
 	$this->form_validation->set_rules('disp','disp', 'required');
-
-    if ($this->form_validation->run() == FALSE) {
+	  
+    if ($this->form_validation->run() == FALSE) {	
         $msg['result'] = "No ha seleccionado ninguna cita";
 		$this->load->vars($msg);
 		$this->index();
-    }else{
+    }else{   
 		$id_odontologo = $this->input->post('disp');
-
 
 		$dispo = 'disponibilidad' . ($id_odontologo);
 		$di = 'dia' . ($id_odontologo);
@@ -100,12 +98,12 @@ class registerDateController extends CI_Controller {
 			"id_paciente" => $id_paciente,
 			"id_odontologo" => $id_odontologo
 		);
-
 		$registrar = $this->Cita->registerDate($data);
 
-		//validamos que que la consulta de registrar cita sea exitosa, 
+		//validamos que que la consutal de registrar cita sea exitosa, 
 
-		if (!$registrar) 
+		
+		if (!$registrar ) 
 		{
 			$msg['result'] = "Registro de cita no exitosa :( ";
 		} 
@@ -113,7 +111,9 @@ class registerDateController extends CI_Controller {
 		{
 			$msg['result'] = "Su cita se ha almacenado exitosamente :D";
 		}
+
 		
+
 		$this->load->vars($msg);
 		$this->index();
 	}

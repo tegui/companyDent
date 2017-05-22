@@ -35,9 +35,6 @@
 
     <div class="">
 
-      Nuevo contenido <br>
-      Editar el CSS
-
     </div>
 
     <!-- jQuery -->

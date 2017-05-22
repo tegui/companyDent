@@ -31,29 +31,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+           <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/companyDent/">Company Dent</a>
+                <a class="navbar-brand" href="<?= base_url() ?>">Company Dent</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    
-                    <li>
-                        <a href="http://localhost/companyDent/index.php/citas_controller">Citas</a>
+
+                    <li class='dropdown'>
+                      <a class='dropdown-toggle' data-toggle='dropdown' style="background: none;">Iniciar sesion <strong class='caret'></strong></a>
+                      <div class='dropdown-menu' style='padding: 10px; padding-bottom: 0px; background: none; width: 400px;'>
+                        <form action="<?= base_url('login/signIn') ?>" method='post' accept-charset='UTF-8' role="form">
+                          <div class='form-group'>
+                            <input class='form-control large' style='text-align: center;' type='text' name='user' placeholder='usuario'/>
+                          </div>
+                          <div class='form-group'>
+                            <input class='form-control large' style='text-align: center;' type='password' name='password' placeholder='contraseña' />
+                          </div>
+                          <div class='form-group'>
+                            <button class='btn btn-primary' style='width: 380px;' type='submit'>INGRESAR</button>
+                          </div>
+                          </form>
+                      </div>
                     </li>
-                    <li>
-                        <a href="http://localhost/companyDent/index.php/registerDateController">Asignar Citas</a>
-                    </li>
-					<li>
-                        <a href="#">Contacto</a>
-                    </li>
+
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
