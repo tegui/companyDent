@@ -38,27 +38,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <ul class="nav navbar-nav">
 
                     <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paciente <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Citas<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="<?= base_url('User_management/list_patients')?>">Consultar paciente</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Paciente nuevo</li>
-                <li><a href="<?= base_url('User_management/register_patient')?>">Registrar paciente</a></li>
+                <li><a href="<?= base_url('User_management/list_patients')?>">Consultar citas</a></li>
 
 
               </ul>
             </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Odontologo <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="<?= base_url('User_management/list_dentist')?>">Consultar odontologo</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Odontologo nuevo</li>
-                <li><a href="<?= base_url('User_management/register_dentist')?>">Registrar odontologo</a></li>
 
-
-              </ul>
-            </li>
              <li>
                         <a href="<?= base_url('login/get_out') ?>"> Cerrar Sesion</a>
                     </li>

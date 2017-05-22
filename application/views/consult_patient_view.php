@@ -11,12 +11,12 @@
     label{
         display: block;
     }
-    
+
 </style>
 <center>
     <br></<br>
-    <br></<br>   
-    <br></<br>      
+    <br></<br>
+    <br></<br>
 
     <h2>CompanyDent - Consultar Pacientes</h2>
     <table>
@@ -28,27 +28,27 @@
             <th>Telefono</th>
             <th></th>
             <th></th>
-                    
+
         </tr>
         <?php
 
         foreach ($patients as $patient):
-        
+
         ?>
         <tr>
             <td><?= $patient->id ?></td>
             <td><?= $patient->name ?></td>
-            <td><?= $patient->brithdate ?></td>
+            <td><?= $patient->birthdate ?></td>
             <td><?= $patient->email ?></td>
             <td><?= $patient->phone ?></td>
             <td><a href="<?= base_url();?>user_management/update/<?= $patient->id ?>">Modificar</a></td>
             <td><a href="<?= base_url()?>user_management/delete/<?= $patient->id ?>">Eliminar</a></td>
-               
+
         </tr>
         </tr>
         <?php
         endforeach;
-        
+
         ?>
     </table>
     <div style=";
@@ -68,6 +68,5 @@
 </div>
 
 </body>
-</center>     
+</center>
 </html>
-
