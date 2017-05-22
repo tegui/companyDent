@@ -24,7 +24,6 @@
                         <input type="text" name="lastname" class="form-control" placeholder="Apellido  "/>
                       </div>
                         <div class="form-group">
-                        <input type="text" name="specialty" class="form-control" placeholder="Especialidad"/>
                         Tipo de Usuario:
                         <?= form_dropdown('specialty',['Endodoncia',
                                                       'Ortodoncia' ,

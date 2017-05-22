@@ -124,7 +124,24 @@ class User_management extends CI_Controller {
 		$lastname = $this->input->post("lastname");
 		$password = $this->input->post("password");
 		$username = $this->input->post("username");
-		$specialty = $this->input->post("specialty");
+		$specialtyId = $this->input->post("specialty");
+		$specialty = "Odontología general";
+		switch ($specialtyId) {
+			case 0:
+				$specialty = "Endodoncia";
+				break;
+			case 1:
+				$specialty = "Ortodoncia";
+				break;
+			case 2:
+				$specialty = "Cirugía y traumatología";
+				break;
+			case 3:
+				$specialty = "Periodoncia";
+				break;
+			default:
+				break;
+		}
 
 		$first_data = array(
 			"id" => $id,
@@ -140,40 +157,14 @@ class User_management extends CI_Controller {
 				"user_id" => $id,
 				"specialty" => $specialty
 			);
-			if ($this->Patient->save($final_data)) {
+			if ($this->Dentist->saveDentist($final_data)) {
 				$data['resul'] = "Registro Guardado";
 			} else {
 				$data['resul'] = "Error de registro";
 			}
 		}
 		$this->load->view('admin_menu_view');
-		$this->load->view('register_patient_view', $data);
-
-
-
-
-		$id = $this->input->post("id");
-		$name = $this->input->post("name");
-		$lastname = $this->input->post("lastname");
-		$specialty = $this->input->post("specialty");
-		$password = $this->input->post("password");
-
-		$data = array(
-			"id" => $id,
-			"name" => $name,
-			"lastname" => $lastname,
-			"specialty" => $specialty,
-			"password" => $password
-			);
-
-
-		if($this->Dentist_model->save($data) == true)
-			echo "Registro Guardado";
-		else
-			echo "No se pudo guardar los datos";
-
-
-
+		$this->load->view('register_Dentist_view', $data);
 	}
 
 	function list_dentist(){
