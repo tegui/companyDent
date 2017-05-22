@@ -25,6 +25,10 @@
                       </div>
                         <div class="form-group">
                         <input type="text" name="specialty" class="form-control" placeholder="Especialidad"/>
+                        Tipo de Usuario:
+                        <?= form_dropdown('specialty',['Endodoncia',
+                                                      'Ortodoncia' ,
+                                                      'Cirugía y traumatología'],0,['id'=>'specialty']); ?>
                       </div>
                       <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Contraseña"/>
