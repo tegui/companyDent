@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `user` (
-  id INT(12) PRIMARY KEY AUTO_INCREMENT,
+  id INT(12) PRIMARY KEY NOT NULL,
   `username` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
@@ -60,35 +60,35 @@ CREATE TABLE `admin` (
 --
 -- Volcado de datos para la tabla
 --
-INSERT INTO `user` (`name`, `lastname`, `password`, `user_type`) VALUES
-('JULIAN', 'TEGUI', '123456', 0),
-('ESTEBAN', 'SUAREZ', '123456', 0),
-('JAMES', 'DIAZ', '123456', 0)
-('FELIPE', 'PINZON', '123456', 1)
-('ARTURO', 'JAVA', '123456', 1)
-('LUFFY', 'MIJA', '123456', 2)
-('EUSTAQUIO', 'DIAZ', '123456', 2)
-('JAMES', 'CALLE', '123456', 2)
-('CAROL', 'MUGIWARA', '123456', 2)
-('CRISTIAN', 'DIAZ', '123456', 2)
-('GLORIA', 'STEVENSON', '123456', 1);
+INSERT INTO `user` (`id`, `username`, `name`, `lastname`, `password`, `user_type`) VALUES
+(165432, 'jdfranko', 'JULIAN', 'TEGUI', '123456', 0),
+(145454, 'esteban', 'ESTEBAN', 'SUAREZ', '123456', 0),
+(124423, 'james', 'JAMES', 'DIAZ', '123456', 0),
+(134689, 'felipe', 'FELIPE', 'PINZON', '123456', 1),
+(124577, 'ar2d2', 'ARTURO', 'JAVA', '123456', 1),
+(124687, 'luffykun', 'LUFFY', 'MIJA', '123456', 2),
+(113453, 'eustaquio', 'EUSTAQUIO', 'DIAZ', '123456', 2),
+(132334, 'jamescalle', 'JAMES', 'CALLE', '123456', 2),
+(124790, 'carol', 'CAROL', 'MUGIWARA', '123456', 2),
+(123456, 'cristian', 'CRISTIAN', 'DIAZ', '123456', 2),
+(123576, 'tiagloria', 'GLORIA', 'STEVENSON', '123456', 1);
 
 INSERT INTO `admin` (`user_id`) VALUES --THIS IS RIDICULOUS :P
-(1),
-(2),
-(3);
+(165432),
+(145454),
+(124423);
 
 insert INTO `patient` (`user_id`, `birthdate`, `email`, `phone`) VALUES
-  (6, '1990-10-19', 'luffy@mail.com', '300678903'),
-  (7, '1990-10-19', 'eustaquio@mail.com', '300678903'),
-  (8, '1990-10-19', 'jamesc@mail.com', '300678903'),
-  (9, '1990-10-19', 'carol@mail.com', '300678903'),
-  (10, '1990-10-19', 'cristian@mail.com', '300678903');
+  (124687, '1990-10-19', 'luffy@mail.com', '300678903'),
+  (113453, '1990-10-19', 'eustaquio@mail.com', '300678903'),
+  (132334, '1990-10-19', 'jamesc@mail.com', '300678903'),
+  (124790, '1990-10-19', 'carol@mail.com', '300678903'),
+  (123456, '1990-10-19', 'cristian@mail.com', '300678903');
 
 INSERT INTO `dentist` (`user_id`, `specialty`) VALUES
-(4, 'endodoncia'),
-(5, 'ortodoncia'),
-(11, 'cirugia y traumatologia');
+(134689, 'endodoncia'),
+(124577, 'ortodoncia'),
+(123576, 'cirugia y traumatologia');
 
 INSERT INTO `days` (`id`, `name`) VALUES
 (1, 'Lunes'),
@@ -106,4 +106,4 @@ INSERT INTO `dentist_time` (`id_dentist`, `id_day`, `time_in`, `time_out`) VALUE
 
 INSERT INTO `patient_date` (`data_date`, `hour`,	`id_patient`,	`id_dentist`) VALUES
 ('2017-04-16', '07:00:00', 4, 2),
-('2017-04-16', '07:00:00', 6, 3);
+('2017-04-16', '07:00:00', 5, 3);

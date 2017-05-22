@@ -51,21 +51,26 @@
 
         ?>
     </table>
-    <div style=";
-    bottom: -10%;
-    left: 38.4%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 100px;
-    text-align: center;
-    border-radius: 25px;
-    border: 4px solid #000000;
-    padding: 20px;
-    max-width: 300px;";>
-    <p><?php if(isset($resul)) { echo $resul;} ?></p>
 
-</div>
+    <p><?php if(isset($resul)) {  ?>
+      <div style=";
+      bottom: -10%;
+      left: 38.4%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+      text-align: center;
+      border-radius: 25px;
+      border: 4px solid #000000;
+      padding: 20px;
+      max-width: 300px;";>
+      </div>
+      <?php echo $resul;} ?>
+    </p>
+
+
+
 
 </body>
 </center>

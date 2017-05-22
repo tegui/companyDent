@@ -11,12 +11,12 @@
     label{
         display: block;
     }
-    
+
 </style>
 <center>
     <br></<br>
-    <br></<br>   
-    <br></<br>      
+    <br></<br>
+    <br></<br>
 
     <h2>CompanyDent - Consultar odontologos</h2>
     <table>
@@ -24,15 +24,15 @@
             <th>Identificacion</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Especialidad</th>           
+            <th>Especialidad</th>
             <th></th>
             <th></th>
-                    
+
         </tr>
         <?php
 
         foreach ($dentists as $dentist):
-        
+
         ?>
         <tr>
             <td><?= $dentist->id ?></td>
@@ -41,14 +41,15 @@
             <td><?= $dentist->specialty ?></td>
             <td><a href="<?= base_url();?>user_management/update_dent/<?= $dentist->id ?>">Modificar</a></td>
             <td><a href="<?= base_url()?>user_management/delete_dentist/<?= $dentist->id ?>">Eliminar</a></td>
-               
+
         </tr>
         </tr>
         <?php
         endforeach;
-        
+
         ?>
     </table>
+    <p><?php if(isset($resul)) { ?>
     <div style=";
     bottom: -10%;
     left: 38.4%;
@@ -61,11 +62,9 @@
     border: 4px solid #000000;
     padding: 20px;
     max-width: 300px;";>
-    <p><?php if(isset($resul)) { echo $resul;} ?></p>
-
-</div>
+    <?php echo $resul; ?>
+  </div> <?php } ?></p>
 
 </body>
-</center>     
+</center>
 </html>
-

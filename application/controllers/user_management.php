@@ -9,43 +9,9 @@ class User_management extends CI_Controller {
 	  	if ((!$this->session->userdata("login")) and ($this->session->userdata("type") != "admin") ) {
 	  		redirect(base_url());
 	  	}
-		$this->load->model('Patient');
-		$this->load->model('Dentist_model');
-	}
-
-	public function register_patient()
-	{
-		$this->load->view('admin_menu_view');
-		$this->load->view('register_patient_view');
-	}
-
-
-
-	function save(){
-
-
-		$id = $this->input->post("id");
-		$name = $this->input->post("name");
-		$brithdate = $this->input->post("date");
-		$email = $this->input->post("email");
-		$phone = $this->input->post("phone");
-		$password = $this->input->post("password");
-
-
-		$data = array(
-			"id" => $id,
-			"name" => $name,
-			"brithdate" => $brithdate,
-			"email" => $email,
-			"phone" => $phone,
-			"password" => $password
-			);
-
-
-		if($this->Patient->save($data) == true)
-			echo "Registro Guardado";
-		else
-			echo "No se pudo guardar los datos";
+			$this->load->model('User');
+			$this->load->model('Patient');
+			$this->load->model('Dentist');
 	}
 
 	function list_patients() {
@@ -56,6 +22,49 @@ class User_management extends CI_Controller {
 		$this->load->view('admin_menu_view');
 		$this->load->view('consult_patient_view', $data);
 	}
+
+	public function register_patient() {
+		$this->load->view('admin_menu_view');
+		$this->load->view('register_patient_view');
+	}
+
+	function savePatient() {
+		$id = $this->input->post("id");
+		$name = $this->input->post("name");
+		$lastname = $this->input->post("lastname");
+		$birthdate = $this->input->post("date");
+		$email = $this->input->post("email");
+		$phone = $this->input->post("phone");
+		$password = $this->input->post("password");
+		$username = $this->input->post("username");
+
+		$first_data = array(
+			"id" => $id,
+			"username" => $username,
+			"name" => $name,
+			"lastname" => $lastname,
+			"password" => $password,
+			"user_type" => 2
+		);
+
+		if ($this->User->saveUser($first_data)) {
+			$final_data = array(
+				"user_id" => $id,
+				"birthdate" => $birthdate,
+				"email" => $email,
+				"phone" => $phone
+			);
+			if ($this->Patient->save($final_data)) {
+				$data['resul'] = "Registro Guardado";
+			} else {
+				$data['resul'] = "Error de registro";
+			}
+		}
+		$this->load->view('admin_menu_view');
+		$this->load->view('register_patient_view', $data);
+	}
+
+
 
 	function update($id){
 		$data['patients'] = $this->Patient->patient($id);
@@ -139,19 +148,12 @@ class User_management extends CI_Controller {
 	}
 
 	function list_dentist(){
-
-		$data['dentists'] = $this->Dentist_model->list_dentist();
-
-
+		$data['dentists'] = $this->Dentist->list_dentist();
 		if ($data['dentists'] == null) {
-
 			$data['resul'] = "No se encontraron odontologos registrados";
-
 		}
 		$this->load->view('admin_menu_view');
 		$this->load->view('consult_dentist_view', $data);
-
-
 	}
 	function update_dent($id){
 		$data['dentists'] = $this->Dentist_model->dentist($id);

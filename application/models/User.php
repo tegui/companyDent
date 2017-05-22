@@ -14,8 +14,12 @@ class User extends CI_Model {
     $this->load->database();
   }
 
-  function getAll() {
-
+  function saveUser($data) {
+    $this->db->insert("user",$data);
+    if ($this->db->affected_rows() > 0) {
+			return true;
+		}
+		return false;
   }
 
   function getUser($username, $pass) {

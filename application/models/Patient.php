@@ -30,7 +30,6 @@ function __construct(){
     $this->db->join('user', 'user.id = patient.user_id');
 		$consult = $this->db->get();
 		return $consult->result();
-
 	}
 
 	function delete($id){

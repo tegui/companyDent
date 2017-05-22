@@ -1,16 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dentist_model extends CI_Model {
-function __construct(){
+class Dentist extends CI_Model {
+
+function __construct() {
 		parent :: __construct();
 		$this->load->database();
 	}
 
-	function save($data){
-
+	function saveDentist($data){
 		$this->db->insert("dentist",$data);
-
 		if ($this->db->affected_rows() > 0) {
 			return true;
 		}
@@ -20,16 +19,16 @@ function __construct(){
 	}
 
 	function list_dentist() {
-
-
-		$consult = $this->db->get('dentist');
+		$this->db->select('*');
+    $this->db->from('dentist');
+    $this->db->join('user', 'user.id = dentist.user_id');
+		$consult = $this->db->get();
 		return $consult->result();
-
 	}
 
 	function delete($id){
 		$this->db->where('id', $id);
-		$this->db->delete('dentist'); 
+		$this->db->delete('dentist');
 		if ($this->db->affected_rows() > 0) {
 			return true;
 		}
@@ -41,7 +40,7 @@ function __construct(){
 
 		$this->db->where('id', $id);
 		return $this->db->update('dentist', $data);
-		
+
 	}
 	function dentist($id){
 
@@ -50,7 +49,7 @@ function __construct(){
 		$this->db->where('id', $id);
 		$consult = $this->db->get();
 		return $consult->result();
-		
+
 	}
 }
 
