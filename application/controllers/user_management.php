@@ -112,14 +112,44 @@ class User_management extends CI_Controller {
 
 	public function register_dentist()
 	{
-
 		$this->load->view('admin_menu_view');
 		$this->load->view('register_dentist_view');
 	}
 
 
 
-	function save_dentist(){
+	function saveDentist(){
+		$id = $this->input->post("id");
+		$name = $this->input->post("name");
+		$lastname = $this->input->post("lastname");
+		$password = $this->input->post("password");
+		$username = $this->input->post("username");
+		$specialty = $this->input->post("specialty");
+
+		$first_data = array(
+			"id" => $id,
+			"username" => $username,
+			"name" => $name,
+			"lastname" => $lastname,
+			"password" => $password,
+			"user_type" => 1
+		);
+
+		if ($this->User->saveUser($first_data)) {
+			$final_data = array(
+				"user_id" => $id,
+				"specialty" => $specialty
+			);
+			if ($this->Patient->save($final_data)) {
+				$data['resul'] = "Registro Guardado";
+			} else {
+				$data['resul'] = "Error de registro";
+			}
+		}
+		$this->load->view('admin_menu_view');
+		$this->load->view('register_patient_view', $data);
+
+
 
 
 		$id = $this->input->post("id");
@@ -127,7 +157,6 @@ class User_management extends CI_Controller {
 		$lastname = $this->input->post("lastname");
 		$specialty = $this->input->post("specialty");
 		$password = $this->input->post("password");
-
 
 		$data = array(
 			"id" => $id,
