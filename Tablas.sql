@@ -62,6 +62,25 @@ CREATE TABLE IF NOT EXISTS `specialty`(
   `name` varchar(30) NOT NULL
 );
 
+
+CREATE TABLE IF NOT EXISTS `clinical_history` (
+  id INT(12) PRIMARY KEY NOT NULL,
+  `patient_id` INT(12) NOT NULL,
+  `input_date` DATE NOT NULL,
+  `diagnose` TEXT NOT NULL,
+  FOREIGN KEY(`patient_id`) REFERENCES `patient`(id)
+);
+
+CREATE TABLE IF NOT EXISTS `treatment` (
+  id INT(12) PRIMARY KEY NOT NULL,
+  `history_id` INT(12) NOT NULL,
+  `type` VARCHAR(30) NOT NULL,
+  `date` DATE NOT NULL,
+  `description` TEXT(512) NOT NULL,
+  FOREIGN KEY(`history_id`) REFERENCES `clinical_history`(id)
+);
+
+
 --
 -- Volcado de datos para la tabla
 --
