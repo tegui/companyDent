@@ -9,12 +9,12 @@ class Patient extends CI_Model {
   public $email;
   public $phone;
 
-function __construct(){
+function __construct() {
     parent :: __construct();
     $this->load->database();
   }
 
-	function save($data){
+	function save($data) {
 		$this->db->insert("patient",$data);
 		if ($this->db->affected_rows() > 0) {
 			return true;

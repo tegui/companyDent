@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href= "<?= base_url('admin')?>">Company Dent - Odontologo</a>
+                <a class="navbar-brand" href= "<?= base_url('dentist')?>">Company Dent - Odontologo</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Citas<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="<?= base_url('User_management/list_patients')?>">Consultar citas</a></li>
+                <li><a href="<?= base_url('dentist/list_appointments')?>">Consultar citas</a></li>
 
 
               </ul>

@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body style="margin-top:100px; margin-left: 30px">
 <H1 style="text-align: center;">Pedir Cita</H1>
 <div style="margin: auto; width:50%; height:50%; border: 3px solid black; padding: 10px; border-radius: 25px;">
-  <?= form_open('registerDateController/availability'); ?>
+  <?= form_open('user/dentistAvailability'); ?>
   <p>
     <?= form_label('Por favor selecciona una especialidad odontológica :', 'especialidad'); ?>
     <?= form_dropdown('especialidad', $specialties, 0,['id'=>'especialidad']); ?>
@@ -38,8 +38,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </tr>
       <?php
       $selected = 0;
-
-      foreach ($disponibles as $cita):
+      print_r($available);
+      foreach ($available as $appointment):
         $ava = $availability[$cita->id];
         $days = array();
         while ($name = current($ava)) {
@@ -62,7 +62,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </tr>
 
       <?php
-
     endforeach; ?>
     </table>
     <br>
@@ -80,5 +79,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 
 </div>
-
-</body>

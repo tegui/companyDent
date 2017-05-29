@@ -43,6 +43,7 @@ class Login extends CI_Controller {
 		$this->session->set_userdata($data);
 		$this->load->view($userMenu);
 		$this->load->view('inicio_view');
+		$this->load->view('footer.php');
 }
 
 
@@ -51,6 +52,7 @@ function get_out() {
 		$this->session->sess_destroy();
 		$this->load->view('welcome_message');
 		$this->load->view('inicio_view');
+		$this->load->view('footer.php');
 	}
 
 }

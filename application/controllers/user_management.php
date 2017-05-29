@@ -3,12 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_management extends CI_Controller {
 
+	private $userType;
+
 	public function __construct()
 	{
 		parent::__construct();
 	  	if ((!$this->session->userdata("login")) and ($this->session->userdata("type") != "admin") ) {
 	  		redirect(base_url());
 	  	}
+			$this->userType = $this->session->userdata("type");
+			echo "<script>console.log( 'Debug Objects: " . $this->userType . "' );</script>";
 			$this->load->model('User');
 			$this->load->model('Patient');
 			$this->load->model('Dentist');
@@ -20,13 +24,20 @@ class User_management extends CI_Controller {
 		if ($data['patients'] == null) {
 			$data['resul'] = "No se encontraron pacientes registrados";
 		}
-		$this->load->view('admin_menu_view');
+		$menuView = 'dentist_menu_view';
+		if ($this->isUserAdmin()) {
+			$menuView = 'admin_menu_view';
+		}
+
+		$this->load->view($menuView);
 		$this->load->view('consult_patient_view', $data);
+		$this->load->view('footer.php');
 	}
 
 	public function register_patient() {
 		$this->load->view('admin_menu_view');
 		$this->load->view('register_patient_view');
+		$this->load->view('footer.php');
 	}
 
 	function savePatient() {
@@ -63,6 +74,7 @@ class User_management extends CI_Controller {
 		}
 		$this->load->view('admin_menu_view');
 		$this->load->view('register_patient_view', $data);
+		$this->load->view('footer.php');
 	}
 
 
@@ -71,6 +83,7 @@ class User_management extends CI_Controller {
 		$data['patients'] = $this->Patient->patient($id);
 		$this->load->view('admin_menu_view');
 		$this->load->view('update_patient_view', $data);
+		$this->load->view('footer.php');
 	}
 
 	function update_patient($id){
@@ -110,6 +123,7 @@ class User_management extends CI_Controller {
 	{
 		$this->load->view('admin_menu_view');
 		$this->load->view('register_dentist_view');
+		$this->load->view('footer.php');
 	}
 
 
@@ -161,6 +175,7 @@ class User_management extends CI_Controller {
 		}
 		$this->load->view('admin_menu_view');
 		$this->load->view('register_Dentist_view', $data);
+		$this->load->view('footer.php');
 	}
 
 	function list_dentist(){
@@ -170,11 +185,13 @@ class User_management extends CI_Controller {
 		}
 		$this->load->view('admin_menu_view');
 		$this->load->view('consult_dentist_view', $data);
+		$this->load->view('footer.php');
 	}
 	function update_dent($id){
 		$data['dentists'] = $this->Dentist_model->dentist($id);
 		$this->load->view('admin_menu_view');
 		$this->load->view('update_dentist_view', $data);
+		$this->load->view('footer.php');
 	}
 
 	function update_dentist($id){
@@ -205,10 +222,16 @@ class User_management extends CI_Controller {
 		$data['specialties'] = $this->Appointment->getSpecialties();
 		$this->load->view('default_menu_view');
 		$this->load->view('registerDateview', $data);
+		$this->load->view('footer.php');
+	}
+
+	function isUserAdmin() {
+		if ($this->userType == "admin") {
+			return TRUE;
+		}
+		return FALSE;
 	}
 }
-
-
 
 
 /* End of file user_management.php */

@@ -37,11 +37,7 @@
 
     </div>
 
-    <!-- jQuery -->
-    <script src="http://localhost/companyDent/js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="http://localhost/companyDent/js/bootstrap.min.js"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>
@@ -49,8 +45,3 @@
         interval: 5000 //changes the speed
     })
     </script>
-
-
-</body>
-
-</html>

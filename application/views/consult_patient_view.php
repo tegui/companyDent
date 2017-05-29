@@ -69,9 +69,4 @@
       <?php echo $resul;} ?>
     </p>
 
-
-
-
-</body>
 </center>
-</html>

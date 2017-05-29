@@ -8,9 +8,10 @@ class registerDateController extends CI_Controller {
     $this->load->model('Dentist');
     $this->load->model('Appointment');
     $data['specialties'] = $this->espec("one");
-
+		return;
     $this->load->view('welcome_message');
 		$this->load->view('registerDateView', $data);
+		$this->load->view('footer.php');
 	}
 
   public function availability() {
@@ -29,15 +30,15 @@ class registerDateController extends CI_Controller {
 		$this->load->model('Dentist');
     $data_esp = $this->Dentist->getWithSpecificSpecialty($especialtyNameTwo);
     $data['disponibles'] = $data_esp; //array();
-		print_r($data['disponibles']);
-		//Aqui voy 
-		return;
+
 		$available = array();
     foreach ($data_esp as $odontologo) {
-      $name = $odontologo->nombre;
+      $userId = $odontologo->user_id;
       $id = $odontologo->id;
-			$available[$id] = $this->Dentist->getOdontologoTime($id);
+			$available[$id] = $this->Dentist->getDentistTime($id);
     }
+		print_r($available);
+
 		$data['availability'] = $available;
     $this->load->vars($data);
     $this->index();

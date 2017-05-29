@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dentist extends CI_Model {
 
+	public $id;
+	public $user_id;
+	public $specialty;
+
 function __construct() {
 		parent :: __construct();
 		$this->load->database();
@@ -52,20 +56,18 @@ function __construct() {
 
 	}
 
-
-
-	public function getOdontologoTime($id) {
-    $this->db->select('horario_in, horario_out, id_dia');
-    $this->db->from('horario_odontologo');
-    $this->db->where('id_odontologo', $id);
+	public function getDentistTime($id) {
+    $this->db->select('time_in, time_out, id_day');
+    $this->db->from('dentist_time');
+    $this->db->where('id_dentist', $id);
     $query = $this->db->get();
     $time = array();
     foreach ($query->result() as $od) {
 
-      $st = $od->horario_in;
-      $end = $od->horario_out;
+      $st = $od->time_in;
+      $end = $od->time_out;
 
-      $day = $this->getDay($od->id_dia);
+      $day = $this->getDay($od->id_day);
 
       $dt = DateTime::createFromFormat("H:i:s", $st);
       $hour_st = $dt->format('H');

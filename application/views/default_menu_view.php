@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href= "<?= base_url('admin')?>">Company Dent - Paciente</a>
+                <a class="navbar-brand" href= "<?= base_url('user')?>">Company Dent - Paciente</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -40,10 +40,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración de Cita<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="<?= base_url('User_management/list_patients')?>">Consultar Citas</a></li>
+                <li><a href="<?= base_url('user/listAppointments')?>">Consultar Citas</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Asignación de citas</li>
-                <li><a href="<?= base_url('User_management/registerAppointment')?>">Solicitar cita</a></li>
+                <li><a href="<?= base_url('user/registerAppointment')?>">Solicitar cita</a></li>
 
 
               </ul>

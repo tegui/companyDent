@@ -12,7 +12,7 @@ class Citas_controller extends CI_Controller {
 		$this->load->model('cita');
 		$data['citas'] = $this->cita->get_Citas();
 		//print_r($data);
-		
+
 
 		if ($data['citas'] == null) {
 
@@ -21,9 +21,9 @@ class Citas_controller extends CI_Controller {
 		}
 		$this->load->view('welcome_message');
 		$this->load->view('consultar_Cita_view', $data);
-		
-		
-		
+		$this->load->view('footer.php');
+
+
 	}
 
 }

@@ -17,7 +17,7 @@ class appointmentController extends CI_Controller {
 		}
 		$this->load->view('welcome_message');
 		$this->load->view('consult_appointment_view', $data);
-
+		$this->load->view('footer.php');
 	}
 
 }

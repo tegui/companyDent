@@ -64,7 +64,3 @@
     max-width: 300px;";>
     <?php echo $resul; ?>
   </div> <?php } ?></p>
-
-</body>
-</center>
-</html>

@@ -11,12 +11,12 @@
     label{
         display: block;
     }
-    
+
 </style>
 <center>
     <br></<br>
-    <br></<br>   
-    <br></<br>      
+    <br></<br>
+    <br></<br>
 
     <h2>CompanyDent - Consultar citas</h2>
     <table>
@@ -24,23 +24,24 @@
             <th>Odontologo</th>
             <th>Fecha</th>
             <th>Hora</th>
-            
+
         </tr>
         <?php
 
-        foreach ($citas as $cita):
-        
+        foreach ($appointments as $appointment):
+
         ?>
         <tr>
-            <td><?= $cita->nombre ?></td>
-            <td><?= $cita->fecha ?></td>
-            <td><?= $cita->hora ?></td>
+            <td><?= $appointment->dentistName ?></td>
+            <td><?= $appointment->data_date ?></td>
+            <td><?= $appointment->hour ?></td>
         </tr>
         <?php
         endforeach;
-        
+
         ?>
     </table>
+    <p><?php if(isset($resul)) { ?>
     <div style=";
     bottom: -10%;
     left: 38.4%;
@@ -53,12 +54,5 @@
     border: 4px solid #000000;
     padding: 20px;
     max-width: 300px;";>
-    <p><?php if(isset($resul)) { echo $resul;} ?></p>
-
-</div>
-
-</body>
-<p class="footer"><strong><input type="button" onclick="location.href='http://localhost/CompanyDent/index.php/Welcome'" value="Volver al menú" /></strong> </p>
-</center>     
-</html>
-
+    <?php echo $resul; ?>
+  </div> <?php } ?></p>

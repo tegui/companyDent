@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `dentist_time` (
    FOREIGN KEY(`id_day`) REFERENCES `days`(id)
 ) ;
 
-CREATE TABLE IF NOT EXISTS `patient_date` (
+CREATE TABLE IF NOT EXISTS `patient_appointment` (
   id INT(4) PRIMARY KEY AUTO_INCREMENT,
  `data_date` DATE NOT NULL,
  `hour` time NOT NULL,
@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `specialty`(
   `id` INT(3) PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(30) NOT NULL
 );
+
 --
 -- Volcado de datos para la tabla
 --
@@ -108,7 +109,7 @@ INSERT INTO `dentist_time` (`id_dentist`, `id_day`, `time_in`, `time_out`) VALUE
 (3, 3, '07:00:00', '14:00:00'),
 (2, 4, '15:00:00', '20:00:00');
 
-INSERT INTO `patient_date` (`data_date`, `hour`,	`id_patient`,	`id_dentist`) VALUES
+INSERT INTO `patient_appointment` (`data_date`, `hour`,	`id_patient`,	`id_dentist`) VALUES
 ('2017-04-16', '07:00:00', 4, 2),
 ('2017-04-16', '07:00:00', 5, 3);
 
