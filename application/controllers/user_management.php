@@ -50,6 +50,29 @@ class User_management extends CI_Controller {
 		$password = $this->input->post("password");
 		$username = $this->input->post("username");
 
+		$this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+		$this->form_validation->set_rules('name',
+    'Name', 'required|min_length[3]|max_length[30]');
+		$this->form_validation->set_rules('lastname',
+    'Lastname', 'required|min_length[3]|max_length[30]');
+		$this->form_validation->set_rules('id',
+    'Id', 'required|min_length[6]|max_length[12]|numeric');
+		$this->form_validation->set_rules('password',
+    'Password', 'required|min_length[6]|max_length[12]|alpha_numeric');
+		$this->form_validation->set_rules('phone',
+    'Phone', 'required|min_length[3]|max_length[30]|numeric');
+		$this->form_validation->set_rules('email',
+    'Email', 'required|min_length[5]|max_length[30]|valid_email');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$data['resul'] = "Error de registro";
+			$this->load->view('admin_menu_view');
+			$this->load->view('register_patient_view', $data);
+			$this->load->view('footer.php');
+		}
+
 		$first_data = array(
 			"id" => $id,
 			"username" => $username,
@@ -142,7 +165,9 @@ class User_management extends CI_Controller {
 		$this->form_validation->set_rules('lastname',
     'Lastname', 'required|min_length[3]|max_length[30]');
 		$this->form_validation->set_rules('id',
-    'Id', 'required|min_length[6]|max_length[12]|alpha_numeric');
+    'Id', 'required|min_length[6]|max_length[12]|numeric');
+		$this->form_validation->set_rules('password',
+    'Password', 'required|min_length[6]|max_length[12]|alpha_numeric');
 
 		if ($this->form_validation->run() == FALSE)
 		{
