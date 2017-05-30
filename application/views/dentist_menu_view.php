@@ -46,7 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestión de historias clínicas<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="<?= base_url('dentist/medicalHistory')?>">Crear historia clínica</a></li>
+              <li><a href="<?= base_url('dentist/createPatientHistory')?>">Crear historia clínica</a></li>
+              <li><a href="<?= base_url('dentist/createDiagnose')?>">Crear diagnóstico</a></li>
             </ul>
           </li>
 

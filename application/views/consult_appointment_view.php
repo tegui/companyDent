@@ -30,9 +30,9 @@
         foreach ($appointments as $appointment):
         ?>
         <tr>
-            <td><?= $appointment->patientName ?></td>
-            <td><?= $appointment->data_date ?></td>
-            <td><?= $appointment->hour ?></td>
+            <td><?= $appointment['patientName'] ?></td>
+            <td><?= $appointment['data_date'] ?></td>
+            <td><?= $appointment['hour'] ?></td>
         </tr>
         <?php
         endforeach;
