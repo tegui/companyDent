@@ -15,6 +15,8 @@ class dentist extends CI_Controller {
 	  		show_error($message, "403", $heading = 'Oups, parece que no tienes permisos para estar aquí...');
 	  	}
       $this->load->model('Appointment');
+			$this->load->model('Patient');
+			$this->load->model('ClinicalHistory');
 	}
 
 	public function index() {
@@ -35,5 +37,55 @@ class dentist extends CI_Controller {
     $this->load->view('consult_appointment_view', $data);
     $this->load->view('footer.php');
   }
+
+	public function patientTreatment() {
+		$currentId = $this->session->userdata("id") ;
+    $appointments = $this->Appointment->getAppointmentsById($currentId);
+		$patientsArray = array();
+		foreach ($appointments as $patient) {
+			$temp = array($patient->id => $patient->patientName);
+			$patientsArray[$patient->id] = $patient->patientName;
+		}
+		$data['patients'] = $patientsArray;
+
+
+		$this->load->view('dentist_menu_view');
+    $this->load->view('treatment_view', $data);
+    $this->load->view('footer.php');
+	}
+
+	public function createPatientHistory() {
+		$currentId = $this->session->userdata("id") ;
+    $appointments = $this->Appointment->getAppointmentsById($currentId);
+		$patientsArray = array();
+
+		foreach ($appointments as $user) {
+
+			$patientsArray[$user['id_patient']] = $user['id'] . " - " .$user['patientName'];
+		}
+		$data['patients'] = $patientsArray;
+
+		$this->load->view('dentist_menu_view');
+    $this->load->view('clinical_history', $data);
+    $this->load->view('footer.php');
+	}
+
+	public function saveClinicalHistory() {
+		$patient = $this->input->post("patientId");
+		$diagnose = $this->input->post("diagnose");
+		$currentDate = date('Y-m-d');
+
+		$data = array(
+			'patient_id' => $patient,
+			'input_date' => $currentDate,
+			'diagnose' => $diagnose
+		);
+		$status = $this->ClinicalHistory->saveNewHistory($data);
+		if (!$status) {
+			$data['resul'] = "Errorrrr";
+			$this->load->vars($data);
+		}
+		$this->createPatientHistory();
+	}
 
 }

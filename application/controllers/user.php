@@ -67,7 +67,6 @@ class user extends CI_Controller {
       $id = $odontologo->id;
 			$available[$id] = $this->Dentist->getDentistTime($id);
     }
-		print_r($available);
 
 		$data['available'] = $available;
     $this->load->vars($data);

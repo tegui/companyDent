@@ -77,12 +77,23 @@ class Appointment extends CI_Model {
           $this->id_patient = $appointmentData->id_patient;
           $this->id_dentist = $dentistId;
           $this->patientName = $appointmentData->name. " " . $appointmentData->lastname;
-          array_push($result,$this);
+
+          $app = array(
+            'id' => $appointmentData->id,
+            'data_date' => $appointmentData->data_date,
+            'hour' => $appointmentData->hour,
+            'id_patient' => $appointmentData->id_patient,
+            'id_dentist' => $dentistId,
+            'patientName' => $appointmentData->name. " " . $appointmentData->lastname
+          );
+
+          array_push($result,$app);
     		}
       }
     } else {
       //SOME AUTH ERROR
     }
+    
     return $result;
   }
 

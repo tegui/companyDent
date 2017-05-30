@@ -64,15 +64,16 @@ CREATE TABLE IF NOT EXISTS `specialty`(
 
 
 CREATE TABLE IF NOT EXISTS `clinical_history` (
-  id INT(12) PRIMARY KEY NOT NULL,
+  id INT(12) PRIMARY KEY AUTO_INCREMENT,
   `patient_id` INT(12) NOT NULL,
   `input_date` DATE NOT NULL,
-  `diagnose` TEXT NOT NULL,
-  FOREIGN KEY(`patient_id`) REFERENCES `patient`(id)
+  `diagnose` VARCHAR(258) NOT NULL,
+  FOREIGN KEY(`patient_id`) REFERENCES `patient`(id),
+  UNIQUE(`input_date`,`diagnose`)
 );
 
 CREATE TABLE IF NOT EXISTS `treatment` (
-  id INT(12) PRIMARY KEY NOT NULL,
+  id INT(12) PRIMARY KEY AUTO_INCREMENT,
   `history_id` INT(12) NOT NULL,
   `type` VARCHAR(30) NOT NULL,
   `date` DATE NOT NULL,

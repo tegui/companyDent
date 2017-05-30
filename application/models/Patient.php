@@ -51,7 +51,13 @@ function __construct() {
 
 }
 
-
+  function getPatientIdById($id) {
+    $this->db->select('id');
+		$this->db->from('patient');
+		$this->db->where('user_id', $id);
+		$consult = $this->db->get();
+		return $consult->result();
+  }
 
 	function patient($id){
 
