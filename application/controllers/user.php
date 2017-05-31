@@ -88,15 +88,15 @@ class user extends CI_Controller {
 						"id_patient" => $id_patient,
 						"id_dentist" => $id_dentist
 					);
-					print_r($data);
+					// print_r($data);
 					$saving = $this->Appointment->createAppointment($data);
 					if ($saving) {
-						print_r('si');
+						$msg['result'] = "Su cita se ha almacenado exitosamente :D";
 					} else {
-						print_r('no');
+						$msg['result'] = "Registro de cita no exitosa :( ";
 					}
 				}
-
+				$this->load->vars($msg);
 			}
 
 		}
@@ -221,6 +221,6 @@ class user extends CI_Controller {
 
 
 	private function getNormalTime($time) {
-		return date_format($time, 'H:i:s');
+		return date("G:i:s", strtotime($time));
 	}
 }
