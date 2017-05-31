@@ -27,9 +27,10 @@
 		            			<div class="form-group">Apellido
 		            				<input type="text" name="lastname" class="form-control" value = '<?php echo $dentist->lastname ?>' />
 		            			</div>
-		            		    <div class="form-group">Especialidad
-		            				<input type="text" name="specialty" class="form-control" value = '<?php echo $dentist->specialty ?>' />
-		            			</div>
+                      <div class="form-group">
+                        Especialidad:
+                        <?= form_dropdown('specialty',$specialties,$specific,['id'=>'specialty']); ?>
+                      </div>
 
 		            			<div class="form-group">
 				            		<button type="submit" class="btn btn-primary btn-block" value="Actualizar">Actualizar</button>

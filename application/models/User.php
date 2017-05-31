@@ -43,4 +43,15 @@ class User extends CI_Model {
     return $this;
   }
 
+  function deleteUserWithId($id) {
+    $this->db->where('id', $id);
+		$this->db->delete('user');
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}
+		else{
+			return false;
+		}
+  }
+
 }

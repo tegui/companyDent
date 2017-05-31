@@ -40,14 +40,24 @@ function __construct() {
 			return false;
 		}
 	}
-	function update($data,$id){
 
-		$this->db->where('id', $id);
-		return $this->db->update('dentist', $data);
+	function update($data,$data1,$id){
+    $this->db->where('user_id', $id);
+    $this->db->update('dentist', $data1);
+    $this->db->where('id', $id);
+    return $this->db->update('user', $data);
+  }
 
+	function getAllDentistInfo($id) {
+    $this->db->select('*');
+    $this->db->from('dentist');
+    $this->db->join('user', 'user.id = dentist.user_id');
+    $this->db->where('user_id', $id);
+		$consult = $this->db->get();
+		return $consult->result();
 	}
-	function dentist($id){
 
+	function dentist($id){
 		$this->db->select('*');
 		$this->db->from('dentist');
 		$this->db->where('id', $id);
@@ -79,14 +89,6 @@ function __construct() {
       }
     }
     return $time;
-  }
-
-  public function getEspecialidades() {
-    $this->db->distinct();
-    $this->db->select('especialidad');
-    $this->db->from('odontologo');
-    $query = $this->db->get();
-    return $query->result();
   }
 
   public function getWithSpecificSpecialty($esp) {
@@ -130,8 +132,6 @@ function __construct() {
       return $hour . ":00 PM";
     }
   }
-
-
 
 }
 

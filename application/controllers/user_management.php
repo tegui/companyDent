@@ -17,6 +17,7 @@ class User_management extends CI_Controller {
 			$this->load->model('Patient');
 			$this->load->model('Dentist');
 			$this->load->model('Appointment');
+			$this->load->model('Specialty');
 	}
 
 	function list_patients() {
@@ -233,7 +234,16 @@ class User_management extends CI_Controller {
 		$this->load->view('footer.php');
 	}
 	function update_dent($id){
-		$data['dentists'] = $this->Dentist_model->dentist($id);
+		$data['specialties'] = $this->Specialty->getSpecialties_array();
+		$data['dentists'] = $this->Dentist->getAllDentistInfo($id);
+		$specificSpecialty = '';
+		foreach ($data['specialties'] as $key => $value) {
+			if($data['dentists'][0]->specialty == $value) {
+				$specificSpecialty = $key;
+				break;
+			}
+		}
+		$data['specific'] = $specificSpecialty;
 		$this->load->view('admin_menu_view');
 		$this->load->view('update_dentist_view', $data);
 		$this->load->view('footer.php');
@@ -242,14 +252,17 @@ class User_management extends CI_Controller {
 	function update_dentist($id){
 		$name = $this->input->post("name");
 		$lastname = $this->input->post("lastname");
-		$specialty = $this->input->post("specialty");
+		$specialtyForm = $this->input->post("specialty");
+		$specialtyName = $this->Specialty->getSpecialtyById($specialtyForm);
 		$data = array(
-			"id" => $id,
-			"name" => $name,
-			"lastname" => $lastname,
-			"specialty" => $specialty,
+  			"id" => $id,
+  			"name" => $name,
+  			"lastname"=>$lastname
 			);
-	    $this->Dentist_model->update($data,$id);
+			$data1 = array(
+  			"specialty" => $specialtyName[0]->name
+  			);
+	  $this->Dentist->update($data,$data1,$id);
 		redirect(base_url('user_management/list_dentist'));
 	}
 
