@@ -66,10 +66,10 @@ class registerDateController extends CI_Controller {
 	$this->form_validation->set_rules('disp','disp', 'required');
 
     if ($this->form_validation->run() == FALSE) {
-        $msg['result'] = "No ha seleccionado ninguna cita";
+    $msg['result'] = "No ha seleccionado ninguna cita";
 		$this->load->vars($msg);
 		$this->index();
-    }else{
+    } else {
 		$id_odontologo = $this->input->post('disp');
 
 		$dispo = 'disponibilidad' . ($id_odontologo);

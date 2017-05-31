@@ -29,8 +29,8 @@
               $days[] = key($ava);
               next($ava);
             }
-            $dispo = 'disponibilidad' . $appointment['dentist_id'];
-            $di = 'dia' . $appointment['dentist_id'];
+            $dispo = 'disponibilidad';
+            $di = 'dia';
             ?>
             <tr>
               <td style="border: 1px solid black; padding: 10px;">

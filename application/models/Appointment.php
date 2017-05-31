@@ -93,7 +93,7 @@ class Appointment extends CI_Model {
     } else {
       //SOME AUTH ERROR
     }
-    
+
     return $result;
   }
 
@@ -125,4 +125,12 @@ class Appointment extends CI_Model {
     }
     return $items;
   }
+
+  function createAppointment($data) {
+		$this->db->insert('appointment', $data);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}
+		return false;
+	}
 }
