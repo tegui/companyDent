@@ -103,7 +103,7 @@ class User_management extends CI_Controller {
 
 
 	function update($id){
-		$data['patients'] = $this->Patient->patient($id);
+		$data['patients'] = $this->Patient->getAllPatientInfo($id);
 		$this->load->view('admin_menu_view');
 		$this->load->view('update_patient_view', $data);
 		$this->load->view('footer.php');
@@ -112,19 +112,23 @@ class User_management extends CI_Controller {
 	function update_patient($id){
 
 		$name = $this->input->post("name");
+		$lastname = $this->input->post("lastname");
 		$brithdate = $this->input->post("date");
 		$email = $this->input->post("email");
 		$phone = $this->input->post("phone");
 
 		$data = array(
-			"id" => $id,
-			"name" => $name,
-			"brithdate" => $brithdate,
-			"email" => $email,
-			"phone" => $phone
+  			"id" => $id,
+  			"name" => $name,
+  			"lastname"=>$lastname
 			);
+			$data1 = array(
+  			"brithdate" => $brithdate,
+  			"email" => $email,
+  			"phone" => $phone
+  			);
 
-	    $this->Patient->update($data,$id);
+	  $this->Patient->update($data,$data1,$id);
 		redirect(base_url('user_management/list_patients'));
 
 	}

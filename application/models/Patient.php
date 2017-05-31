@@ -43,13 +43,21 @@ function __construct() {
 		}
 	}
 
+  function getAllPatientInfo($id) {
+    $this->db->select('*');
+    $this->db->from('patient');
+    $this->db->join('user', 'user.id = patient.user_id');
+    $this->db->where('user_id', $id);
+		$consult = $this->db->get();
+		return $consult->result();
+	}
 
-	function update($data,$id){
-
-		 $this->db->where('id', $id);
-        return $this->db->update('patient', $data);
-
-}
+	function update($data,$data1,$id){
+    $this->db->where('user_id', $id);
+    $this->db->update('patient', $data1);
+    $this->db->where('id', $id);
+    return $this->db->update('user', $data);
+  }
 
   function getPatientIdById($id) {
     $this->db->select('id');
@@ -60,12 +68,10 @@ function __construct() {
   }
 
 	function patient($id){
-
 		$this->db->select('*');
 		$this->db->from('patient');
 		$this->db->where('id', $id);
 		$consult = $this->db->get();
 		return $consult->result();
-
-}
+  }
 }

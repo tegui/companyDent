@@ -23,6 +23,7 @@
         <tr>
             <th>Identificacion</th>
             <th>Nombre</th>
+            <th>Apellido</th>
             <th>Fecha de nacimiento</th>
             <th>Email</th>
             <th>Telefono</th>
@@ -38,6 +39,7 @@
         <tr>
             <td><?= $patient->id ?></td>
             <td><?= $patient->name ?></td>
+            <td><?= $patient->lastname ?></td>
             <td><?= $patient->birthdate ?></td>
             <td><?= $patient->email ?></td>
             <td><?= $patient->phone ?></td>
