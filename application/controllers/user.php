@@ -16,6 +16,7 @@ class user extends CI_Controller {
 	  	}
 			$this->load->model('Patient');
 			$this->load->model('Appointment');
+			$this->load->model('Dentist');
 	}
 
 	public function index()
@@ -44,8 +45,18 @@ class user extends CI_Controller {
 		$this->load->view('footer.php');
 	}
 
+	function requestAppointment() {
+		$this->load->model('appointment');
+		$this->load->helper(array('form', 'url'));
+	  $this->load->library('form_validation');
+		$this->form_validation->set_rules('disp','disp', 'required');
+		if ($this->form_validation->run() == FALSE) {
+		}
+	}
+
 	public function dentistAvailability() {
     $esp = $this->input->post('especialidad');
+
 		$espp = $esp + 1;
 		$this->db->select('name');
 		$this->db->from('specialty');
@@ -56,24 +67,33 @@ class user extends CI_Controller {
 		foreach ($especialtyName as $key) {
 			$especialtyNameTwo = $key['name'];
 		}
-
-		$this->load->model('Dentist');
     $data_esp = $this->Dentist->getWithSpecificSpecialty($especialtyNameTwo);
-    $data['disponibles'] = $data_esp; //array();
+		$av = array();
+		$cont = 0;
+		foreach ($data_esp as $key => $value) {
+			$time = $this->Dentist->getDentistTime($value->id);
+			if (count($time) > 0) {
+				$usr = $this->Dentist->getAttrById($value->user_id);
 
-		$available = array();
-    foreach ($data_esp as $odontologo) {
-      $userId = $odontologo->user_id;
-      $id = $odontologo->id;
-			$available[$id] = $this->Dentist->getDentistTime($id);
-    }
+				$name = $usr[0]['name'] . " " . $usr[0]['lastname'];
+				$dentId = $value->id;
+				$dentistTime = $time;
 
-		$data['available'] = $available;
-    $this->load->vars($data);
+				$av[$cont] = array(
+					'dentist_id' => $dentId,
+					'name' => $name,
+					'availability' => $dentistTime
+				);
+			}
+		}
 
+		$data['available'] = $av;
 		$data['specialties'] = $this->Appointment->getSpecialties();
 		$this->load->view('default_menu_view');
-		$this->load->view('registerAppointmentview', $data);
+		$this->load->view('registerAppointmentView', $data);
 		$this->load->view('footer.php');
+
+		return;
   }
+
 }

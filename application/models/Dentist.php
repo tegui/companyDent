@@ -30,15 +30,24 @@ function __construct() {
 		return $consult->result();
 	}
 
-	function delete($id){
-		$this->db->where('id', $id);
-		$this->db->delete('dentist');
+	function deleteById($id) {
+
+		$sql = "DELETE FROM dentist WHERE id = ?";
+		$this->db->query($sql, $id);
+		// $this->db->where('id', $id);
+		// $this->db->delete('dentist');
 		if ($this->db->affected_rows() > 0) {
 			return true;
 		}
-		else{
 			return false;
-		}
+	}
+
+	function getAttrById($id) {
+		$this->db->select('name, lastname');
+		$this->db->from('user');
+		$this->db->where('id', $id);
+		$data = $this->db->get()->result_array();
+		return $data;
 	}
 
 	function update($data,$data1,$id){
@@ -57,13 +66,20 @@ function __construct() {
 		return $consult->result();
 	}
 
+	function getDentistById($id) {
+    $this->db->select('id');
+		$this->db->from('dentist');
+		$this->db->where('user_id', $id);
+		$consult = $this->db->get();
+		return $consult->result();
+  }
+
 	function dentist($id){
 		$this->db->select('*');
 		$this->db->from('dentist');
 		$this->db->where('id', $id);
 		$consult = $this->db->get();
 		return $consult->result();
-
 	}
 
 	public function getDentistTime($id) {

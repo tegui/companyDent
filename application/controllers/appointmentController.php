@@ -20,6 +20,14 @@ class appointmentController extends CI_Controller {
 		$this->load->view('footer.php');
 	}
 
+	function createAppointment($data) {
+		$this->db->insert('appointment', $data);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }
 
 /* End of file appointments_controller.php */

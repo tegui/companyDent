@@ -267,13 +267,17 @@ class User_management extends CI_Controller {
 	}
 
 	function delete_dentist($id){
-		if($this->Dentist_model->delete($id)){
+		$dentistId = $this->Dentist->getDentistById($id);
+		$a = $this->Dentist->deleteById($dentistId[0]->id);
+		print_r($a);
+		return;
+		if($a){
 			$data['resul'] = "Registro Eliminado";
 		}
 		else{
 			$data['resul'] = "No se pudo eliminar los datos";
 		}
-         redirect(base_url('user_management/list__dentist'));
+		redirect(base_url('user_management/list_dentist'));
 	}
 
 	function registerAppointment() {
