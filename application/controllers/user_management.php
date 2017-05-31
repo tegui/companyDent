@@ -110,7 +110,6 @@ class User_management extends CI_Controller {
 	}
 
 	function update_patient($id){
-
 		$name = $this->input->post("name");
 		$lastname = $this->input->post("lastname");
 		$brithdate = $this->input->post("date");
@@ -130,19 +129,18 @@ class User_management extends CI_Controller {
 
 	  $this->Patient->update($data,$data1,$id);
 		redirect(base_url('user_management/list_patients'));
-
 	}
 
 
 	function delete($id){
-
-		if($this->Patient->delete($id)){
+		$patientId = $this->Patient->getPatientIdById($id);
+		if($this->Patient->delete($patientId[0]->id)){
 			$data['resul'] = "Registro Eliminado";
 		}
 		else{
 			$data['resul'] = "No se pudo eliminar los datos";
 		}
-         redirect(base_url('user_management/list_patients'));
+		redirect(base_url('user_management/list_patients'));
 	}
 
 
